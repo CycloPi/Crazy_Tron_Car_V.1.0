@@ -28,7 +28,7 @@ func _on_van4_pressed():
 	_load_scene("res://Coches/coche_platano/coche_platano.scn")
 	
 func _on_van5_pressed():
-	_load_scene("res://Coches/Coche.003clio/clio03.scn")
+	_load_scene("res://Coches/Coche.003clio/clio.scn")
 	
 	
 
