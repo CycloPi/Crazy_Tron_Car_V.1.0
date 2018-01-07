@@ -4,6 +4,7 @@ var carrera
 
 func _load_scene(road):
 	carrera = load(road).instance()
+	Global.pista = carrera.get_name()
 	carrera.set_name("carrera")
 	print ("pista seleccionada: " + str(road))
 #	print("pista "+ str(carrera))
