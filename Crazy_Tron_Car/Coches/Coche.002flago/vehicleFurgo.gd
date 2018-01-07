@@ -17,7 +17,7 @@ onready var imprimeVelo = get_owner().get_node("HubFlafo/Velocidad")
 onready var imprimeAngu = get_owner().get_node("HubFlafo/Angulo")
 onready var auja = get_owner().get_node("HubFlafo/Panel")
 #onready var imprimeVeloLed = get_owner().get_node("HubFlafo/Velo150led")
-onready var imprimePuntos = get_owner().get_node("HubFlafo/Puntos")
+onready var imprimePuntos = get_owner().get_node("HubFlafo/SpritePuntos/Puntos")
 
 var banderaPuntos10 = false
 var puntos = 0
