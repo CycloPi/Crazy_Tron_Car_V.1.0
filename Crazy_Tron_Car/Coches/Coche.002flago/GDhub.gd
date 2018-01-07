@@ -1,6 +1,6 @@
 extends Control
 
-var preMapa = preload("res://enus/HubMapa/EcenaCamaraMapa.tscn")
+#var preMapa = preload("res://enus/HubMapa/EcenaCamaraMapa.tscn")
 var mapa
 
 # variables para animación de velocidad en dígitos
@@ -68,7 +68,7 @@ func relogiko():
 		tiempoInicio = OS.get_ticks_msec()
 		banderaInicioT = true 
 		
-		mapa = preMapa.instance()
+		#mapa = preMapa.instance()
 		get_parent().add_child(mapa)
 		
 	#print(((OS.get_ticks_msec()-tiempoInicio)/1000))
