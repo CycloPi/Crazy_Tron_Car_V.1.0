@@ -46,6 +46,20 @@ shortcut = null
 icon = ExtResource( 2 )
 flat = true
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 499.0
+margin/top = 161.0
+margin/right = 994.0
+margin/bottom = 497.0
+bbcode/enabled = true
+bbcode/bbcode = "Crazy Tron Car esta desarrollado por:\n\n\t-Antonio Bravo Meseguer\n\t-José García Moreno\n\t-Juan Antonio Frutos López\n\nUtilizando Godot Engine 2.1\n\n\t2018\n\t\nLicencia MIT\n\n\tCódigo fuente: https://github.com/juanantoniogit/Crazy_Tron_Car_V.1.0"
+visible_characters = -1
+
 [connection signal="pressed" from="MenuPrincipal" to="." method="_on_Button_pressed"]
 
 
