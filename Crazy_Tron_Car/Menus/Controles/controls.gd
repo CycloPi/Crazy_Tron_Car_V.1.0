@@ -13,8 +13,8 @@ extends Control
 # button.connect("pressed", self, "wait_for_input", [ button, action ])
 
 # Member variables
-var player_actions = [ "move_up", "move_down", "move_left", "move_right", "jump" ]
-var action # To register the action the UI is currently handling
+var player_actions = [ "ui_up", "ui_down", "ui_left", "ui_right", "ui_frenar" ]
+var action = []# To register the action the UI is currently handling
 var button # Button node corresponding to the above action
 
 
@@ -54,3 +54,8 @@ func _ready():
 		var button = get_node("bindings").get_node(action).get_node("Button")
 		button.set_text(OS.get_scancode_string(input_event.scancode))
 		button.connect("pressed", self, "wait_for_input", [action])
+
+
+func _on_Back_pressed():
+	get_tree().change_scene("res://Menus/M-Principal/base.tscn")
+	pass # replace with function body
