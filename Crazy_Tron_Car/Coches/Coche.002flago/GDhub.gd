@@ -69,7 +69,7 @@ func relogiko():
 		banderaInicioT = true 
 		
 		#mapa = preMapa.instance()
-		get_parent().add_child(mapa)
+		#get_parent().add_child(mapa)
 		
 	#print(((OS.get_ticks_msec()-tiempoInicio)/1000))
 	segundosT = ((OS.get_ticks_msec()-tiempoInicio)/1000)
