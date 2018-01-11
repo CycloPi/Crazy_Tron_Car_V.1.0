@@ -35,7 +35,7 @@ onready var cuentaAtras = get_node("cuentaAtras")
 
 
 # Variables para minimapa
-onready var posicionCoche = get_node("MiniMapa/Viewport/CameraMiniMapa/posicionCoche")
+#onready var posicionCoche = get_node("MiniMapa/Viewport/CameraMiniMapa/posicionCoche")
 onready var cocheMiniMapa = get_tree().get_root().get_node("/root/carrera/PosicionSalida/car")
 
 func _ready():
@@ -72,7 +72,7 @@ func _fixed_process(delta):
 	
 	
 func posicion_miniMapa():
-	print (posicionCoche)
+	#print (posicionCoche)
 	print (cocheMiniMapa.get_name())
 	print(coche.get_transform().origin)
 	var cochePos = get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin)
