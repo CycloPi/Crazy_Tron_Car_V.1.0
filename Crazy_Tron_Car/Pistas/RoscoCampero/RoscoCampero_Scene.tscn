@@ -142,16 +142,14 @@ params/attenuation = 1.0
 
 [node name="Control" parent="." instance=ExtResource( 2 )]
 
-[node name="Camera" parent="Control/Control/Viewport"]
+[node name="CameraMiniMapa" parent="Control/MiniMapa/Viewport"]
 
-transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 69.8792, 0 )
+transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 66.5428, 0 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 environment = SubResource( 2 )
-
-[connection signal="pressed" from="Control/Back" to="Control" method="_on_Back_pressed"]
 
 
 [editable path="Control"]
