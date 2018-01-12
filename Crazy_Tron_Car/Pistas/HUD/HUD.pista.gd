@@ -33,15 +33,20 @@ onready var fuerzaMotor = coche.engine_force
 var banderaEnCarrera = false
 onready var cuentaAtras = get_node("cuentaAtras")
 
+
+# Variables para minimapa
+#onready var posicionCoche = get_node("MiniMapa/Viewport/CameraMiniMapa/posicionCoche")
+onready var cocheMiniMapa = get_tree().get_root().get_node("/root/carrera/PosicionSalida/car")
+
 func _ready():
 #	print (Global.coche.get_node("BODY").get_name())
 	set_fixed_process(true)
 #	print("coche " + str(coche.get_name()))
 	leerJuego()
-	print(Global.pista)
+#	print(Global.pista)
 	#print(get_parent().get_name())
 
-	print ("leo ultima: ",diccionarioUltimaPartida)
+#	print ("leo ultima: ",diccionarioUltimaPartida)
 	
 	# leer datos actuales de partida 
 	cocheSeleccionado = coche.get_child(0).get_name() #paguardar nombre circuito
@@ -63,7 +68,17 @@ func _fixed_process(delta):
 	salidaFuerza()
 	cuentaAtras()
 	tiempo_vueltas()
-
+	posicion_miniMapa()
+	
+	
+func posicion_miniMapa():
+	#print (posicionCoche)
+	print (cocheMiniMapa.get_name())
+	print(coche.get_transform().origin)
+	var cochePos = get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin)
+	print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
+	get_node("MiniMapa/Viewport/CameraMiniMapa/Sprite").set_pos(cochePos)
+	pass
 
 func tiempo_vueltas():
 	var tiempoveltas
@@ -122,7 +137,7 @@ func guardarJuego(diccionarioGuardar):
 	archivoGuardar.open(direccionArchivo, archivoGuardar.WRITE)
 	archivoGuardar.store_line(diccionarioGuardar.to_json())
 	archivoGuardar.close()	
-	print("guardo")
+#	print("guardo")
 
 func leerJuego():  
 	var archivoLeer = File.new()
@@ -134,4 +149,4 @@ func leerJuego():
 	diccionarioLeido.parse_json(archivoLeer.get_as_text())
 	print(diccionarioLeido.key1)
 	diccionarioUltimaPartida = diccionarioLeido.key1
-	print("leeeo")
+#	print("leeeo")
