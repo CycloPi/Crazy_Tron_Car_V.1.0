@@ -30,7 +30,7 @@ func retardoPotenicador(tiempoR):
 func _on_Area_body_enter( body ):
 	tiempoToque = HUDcoche.segundosT
 	motorOriginal = coche.engine_force
-	coche.engine_force = 900
+	coche.engine_force = 500
 	hide()
 	#queue_free()
 	pass 
