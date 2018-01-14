@@ -81,7 +81,7 @@ func _fixed_process(delta):
 # area que hace que deje de grabar las posiciones del coche  "meta"
 func _on_meta_body_enter( body ):
  #deja de grabar y sustituye el tiempo del fantasma por el del coche si este es menor 
-	
+	print("adioasss")
 	grabar_coche = false
 #	
 	if GLOBAL_fantasma.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"].empty() or GLOBAL_fantasma.posiciones_coche["posicion_coche_x_0"].size() < GLOBAL_fantasma.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"].size():
@@ -108,5 +108,10 @@ func _on_meta_body_enter( body ):
 #
 func _on_meta1_body_enter( body ):
 	#### hace vidible  la meta del coche, hace visible la leyermask  ####
+	print ("holaaaaa")
 	meta_mask.set_layer_mask_bit(0,1)
+	
 	pass
+
+
+
