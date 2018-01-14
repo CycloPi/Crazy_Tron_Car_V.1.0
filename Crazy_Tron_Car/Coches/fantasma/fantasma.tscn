@@ -4,11 +4,11 @@
 
 [sub_resource type="BoxShape" id=1]
 
-extents = Vector3( 13.1353, 1, 1.75373 )
+extents = Vector3( 10, 1, 1.75373 )
 
 [sub_resource type="BoxShape" id=2]
 
-extents = Vector3( 20.8828, 1, 1 )
+extents = Vector3( 12.1259, 1, 1 )
 
 [node name="fantasma" type="Spatial"]
 
@@ -66,7 +66,7 @@ _update_shape_index = 0
 [node name="meta1" type="Area" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.839855, 25.7906 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312777, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1

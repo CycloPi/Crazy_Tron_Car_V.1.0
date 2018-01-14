@@ -9,9 +9,10 @@ onready var  meta_mask = get_node("meta")
 onready var fantasma_body = get_node("TestCube")
 
 func _ready():
-	#### escone la meta del coche, esconde la leyermask (.hide no sive) ####
+	
 	
 	GLOBAL_fantasma.load_game()
+	#### #### escone la meta del coche, esconde la leyermask (.hide no sive) ####
 	meta_mask.set_layer_mask_bit(0,0)
 	grabar_coche()
 	
