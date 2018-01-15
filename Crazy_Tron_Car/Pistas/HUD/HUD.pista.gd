@@ -111,10 +111,10 @@ func relogiko():
 	
 func salidaFuerza():
 	if segundosT == 3:
-		coche.engine_force = 30
+		coche.engine_force = 100
 		banderaEnCarrera = true
-#	if segundosT < 3 and banderaEnCarrera == false:
-#		coche.engine_force = 0
+	if segundosT < 3 and banderaEnCarrera == false:
+		coche.engine_force = 0
 #	else:	
 #		coche.engine_force = fuerzaMotor
 #		banderaEnCarrera = true
