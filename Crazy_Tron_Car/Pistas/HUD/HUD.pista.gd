@@ -73,10 +73,10 @@ func _fixed_process(delta):
 	
 func posicion_miniMapa():
 	#print (posicionCoche)
-	print (cocheMiniMapa.get_name())
-	print(coche.get_transform().origin)
+	#print (cocheMiniMapa.get_name())
+	#print(coche.get_transform().origin)
 	var cochePos = get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin)
-	print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
+	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
 	get_node("MiniMapa/Viewport/CameraMiniMapa/Sprite").set_pos(cochePos)
 	pass
 
@@ -110,11 +110,14 @@ func relogiko():
 	pass
 	
 func salidaFuerza():
-	if segundosT < 3 and banderaEnCarrera == false:
-		coche.engine_force = 0
-	else:	
-		coche.engine_force = fuerzaMotor
+	if segundosT == 3:
+		coche.engine_force = 30
 		banderaEnCarrera = true
+#	if segundosT < 3 and banderaEnCarrera == false:
+#		coche.engine_force = 0
+#	else:	
+#		coche.engine_force = fuerzaMotor
+#		banderaEnCarrera = true
 #		print(coche.engine_force)
 
 
@@ -147,6 +150,6 @@ func leerJuego():
 	archivoLeer.open(direccionArchivo, File.READ)
 	var diccionarioLeido = {}
 	diccionarioLeido.parse_json(archivoLeer.get_as_text())
-	print(diccionarioLeido.key1)
+#	print(diccionarioLeido.key1)
 	diccionarioUltimaPartida = diccionarioLeido.key1
 #	print("leeeo")
