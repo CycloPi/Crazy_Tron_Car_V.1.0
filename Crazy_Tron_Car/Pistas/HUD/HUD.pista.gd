@@ -39,7 +39,7 @@ onready var cuentaAtras = get_node("cuentaAtras")
 # Variables para minimapa
 #onready var posicionCoche = get_node("MiniMapa/Viewport/CameraMiniMapa/posicionCoche")
 onready var cocheMiniMapa = get_tree().get_root().get_node("/root/carrera/PosicionSalida/car")
-onready var fantasma = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma")
+onready var fantasma = get_tree().get_root().get_node("/root/carrera/fantasma")
 
 
 
@@ -117,7 +117,7 @@ func relogiko():
 	pass
 	
 func salidaFuerza():
-	print ("engine force: " +str(coche.engine_force))
+#	print ("engine force: " +str(coche.engine_force))
 	if segundosT == 3:
 		coche.engine_force = 100
 		banderaEnCarrera = true
