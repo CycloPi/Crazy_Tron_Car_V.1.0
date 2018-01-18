@@ -27,6 +27,8 @@ var tiempoInicio = 0
 var banderaInicioT = false
 var segundosT = 0
 var vueltas = 0 
+
+
 #variables para boqueo Salida
 onready var coche = Global.coche.get_node("BODY")
 onready var fuerzaMotor = coche.engine_force
@@ -37,6 +39,9 @@ onready var cuentaAtras = get_node("cuentaAtras")
 # Variables para minimapa
 #onready var posicionCoche = get_node("MiniMapa/Viewport/CameraMiniMapa/posicionCoche")
 onready var cocheMiniMapa = get_tree().get_root().get_node("/root/carrera/PosicionSalida/car")
+onready var fantasma = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma")
+
+
 
 func _ready():
 #	print (Global.coche.get_node("BODY").get_name())
@@ -72,12 +77,14 @@ func _fixed_process(delta):
 	
 	
 func posicion_miniMapa():
-	#print (posicionCoche)
+	#print (posicion0Coche)
 	#print (cocheMiniMapa.get_name())
 	#print(coche.get_transform().origin)
 	var cochePos = get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin)
+	var fantasmaPos = get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(fantasma.get_transform().origin)
 	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
 	get_node("MiniMapa/Viewport/CameraMiniMapa/Sprite").set_pos(cochePos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
 	pass
 
 func tiempo_vueltas():
@@ -110,11 +117,13 @@ func relogiko():
 	pass
 	
 func salidaFuerza():
+	print ("engine force: " +str(coche.engine_force))
 	if segundosT == 3:
 		coche.engine_force = 100
 		banderaEnCarrera = true
 	if segundosT < 3 and banderaEnCarrera == false:
 		coche.engine_force = 0
+		
 #	else:	
 #		coche.engine_force = fuerzaMotor
 #		banderaEnCarrera = true
