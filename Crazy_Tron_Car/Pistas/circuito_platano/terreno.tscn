@@ -150,15 +150,43 @@ transform/local = Transform( 1.67586, 0, 0, 0, 1.67586, 0, 0, 0, 1.67586, 0, 2.3
 
 [node name="parcial1" parent="PosicionSalida/fantasma"]
 
-transform/local = Transform( -0.937812, 0, -0.347144, 0, 1, 0, 0.347144, 0, -0.937812, -23.5584, 1.56578, 121.254 )
+transform/local = Transform( -0.991855, 0, 0.127376, 0, 1, 0, -0.127376, 0, -0.991855, -0.908983, 1.56578, 76.6149 )
 
 [node name="parcial2" parent="PosicionSalida/fantasma"]
 
-transform/local = Transform( -0.711933, 0, 0.702248, 0, 1, 0, -0.702248, 0, -0.711933, 120.194, 1.56578, 124.457 )
+transform/local = Transform( 0.926804, 0, 0.375547, 0, 1, 0, -0.375547, 0, 0.926804, -25.6322, 1.56578, 113.69 )
 
 [node name="parcial3" parent="PosicionSalida/fantasma"]
 
-transform/local = Transform( -0.989668, 0, -0.143377, 0, 1, 0, 0.143377, 0, -0.989668, 130.958, 1.56578, 44.328 )
+transform/local = Transform( 0.183753, 0, -0.982972, 0, 1, 0, 0.982972, 0, 0.183753, 107.27, 1.56578, 130.141 )
+
+[node name="parcial4" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( 0.78969, 0, 0.613506, 0, 1, 0, -0.613506, 0, 0.78969, 117.051, 1.56578, 109.979 )
+
+[node name="parcial5" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( 0.900404, 0, 0.435055, 0, 1, 0, -0.435055, 0, 0.900404, 56.0714, 1.56578, 82.2108 )
+
+[node name="parcial6" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( 0.261431, 0, 0.965222, 0, 1, 0, -0.965222, 0, 0.261431, 69.7715, 1.56578, 62.1362 )
+
+[node name="parcial7" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( -0.54715, 0, 0.837035, 0, 1, 0, -0.837035, 0, -0.54715, 113.702, 1.56578, 72.0328 )
+
+[node name="parcial8" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( 0.501551, 0, 0.865128, 0, 1, 0, -0.865128, 0, 0.501551, 118.87, 1.56578, 28.9415 )
+
+[node name="parcial9" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( 0.480872, 0, 0.876791, 0, 1, 0, -0.876791, 0, 0.480872, 64.1725, 1.56578, 25.3599 )
+
+[node name="parcial10" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( 0.425902, 0, -0.904769, 0, 1, 0, 0.904769, 0, 0.425902, 7.75238, 1.56578, -24.5999 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
@@ -182,9 +210,23 @@ far = 1000.0
 
 [connection signal="body_enter" from="PosicionSalida/fantasma/parcial2" to="PosicionSalida/fantasma" method="_on_parcial2_body_enter"]
 
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_parcial3_body_enter"]
+
 [connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_meta2_body_enter"]
 
-[connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_parcial3_body_enter"]
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial4" to="PosicionSalida/fantasma" method="_on_parcial4_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial5" to="PosicionSalida/fantasma" method="_on_parcial5_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial6" to="PosicionSalida/fantasma" method="_on_parcial6_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial7" to="PosicionSalida/fantasma" method="_on_parcial7_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial8" to="PosicionSalida/fantasma" method="_on_parcial8_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial9" to="PosicionSalida/fantasma" method="_on_parcial9_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial10" to="PosicionSalida/fantasma" method="_on_parcial10_body_enter"]
 
 [connection signal="pressed" from="HUDpista/Back" to="HUDpista" method="_on_Back_pressed"]
 
