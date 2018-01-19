@@ -39,7 +39,7 @@ onready var cuentaAtras = get_node("cuentaAtras")
 # Variables para minimapa
 #onready var posicionCoche = get_node("MiniMapa/Viewport/CameraMiniMapa/posicionCoche")
 onready var cocheMiniMapa = get_tree().get_root().get_node("/root/carrera/PosicionSalida/car")
-onready var fantasma = get_tree().get_root().get_node("/root/carrera/fantasma")
+onready var fantasma = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma")
 
 
 
@@ -80,10 +80,11 @@ func posicion_miniMapa():
 	#print (posicion0Coche)
 	#print (cocheMiniMapa.get_name())
 	#print(coche.get_transform().origin)
-	var cochePos = get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin)
-	var fantasmaPos = get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(fantasma.get_transform().origin)
+	var CameraMiniMapa = get_node("MiniMapa/Viewport/CameraMiniMapa")
+	var cochePos = CameraMiniMapa.unproject_position(coche.get_transform().origin)
+	var fantasmaPos = CameraMiniMapa.unproject_position(fantasma.get_transform().origin)
 	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
-	get_node("MiniMapa/Viewport/CameraMiniMapa/Sprite").set_pos(cochePos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_pos(cochePos)
 	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
 	pass
 
