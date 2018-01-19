@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Pistas/circuito_platano/imagenes/circuitocarreras.png" type="Texture" id=1]
-[ext_resource path="res://Pistas/HUD/HUD.pista.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Coches/fantasma/fantasma.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Pistas/HUD/HUD.pista.tscn" type="PackedScene" id=3]
 
 [sub_resource type="FixedMaterial" id=1]
 
@@ -141,17 +142,52 @@ _update_shape_index = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
+[node name="fantasma" parent="PosicionSalida" instance=ExtResource( 2 )]
+
+[node name="meta" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( 1.67586, 0, 0, 0, 1.67586, 0, 0, 0, 1.67586, 0, 2.30386, -2.09245 )
+
+[node name="parcial1" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( -0.937812, 0, -0.347144, 0, 1, 0, 0.347144, 0, -0.937812, -23.5584, 1.56578, 121.254 )
+
+[node name="parcial2" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( -0.711933, 0, 0.702248, 0, 1, 0, -0.702248, 0, -0.711933, 120.194, 1.56578, 124.457 )
+
+[node name="parcial3" parent="PosicionSalida/fantasma"]
+
+transform/local = Transform( -0.989668, 0, -0.143377, 0, 1, 0, 0.143377, 0, -0.989668, 130.958, 1.56578, 44.328 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 environment = SubResource( 3 )
 
-[node name="HUDpista" parent="." instance=ExtResource( 2 )]
+[node name="HUDpista" parent="." instance=ExtResource( 3 )]
+
+editor/display_folded = true
 
 [node name="CameraMiniMapa" parent="HUDpista/MiniMapa/Viewport"]
 
 transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 48.8765, 178.928, 56.469 )
 far = 1000.0
 
+[connection signal="body_enter" from="PosicionSalida/fantasma/meta" to="PosicionSalida/fantasma" method="_on_meta_body_enter"]
 
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial1" to="PosicionSalida/fantasma" method="_on_meta1_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial1" to="PosicionSalida/fantasma" method="_on_parcial1_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial2" to="PosicionSalida/fantasma" method="_on_parcial2_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_meta2_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_parcial3_body_enter"]
+
+[connection signal="pressed" from="HUDpista/Back" to="HUDpista" method="_on_Back_pressed"]
+
+
+[editable path="PosicionSalida/fantasma"]
 [editable path="HUDpista"]
