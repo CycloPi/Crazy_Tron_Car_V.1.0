@@ -84,7 +84,7 @@ func posicion_miniMapa():
 	var cochePos = CameraMiniMapa.unproject_position(coche.get_transform().origin)
 	var fantasmaPos = CameraMiniMapa.unproject_position(fantasma.get_transform().origin)
 	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
-	print (str(fantasma) + str(fantasma.get_tree()) + str(fantasma.get_filename())) 
+#	print (str(fantasma) + str(fantasma.get_tree()) + str(fantasma.get_filename())) 
 	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_pos(cochePos)
 	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
 	pass
