@@ -15,8 +15,8 @@ func _load_scene(road,fantasma_escena):
 	
 #	var fantasma = 
 #	get_parent().add_child(fantasma)
-	carrera.get_node("PosicionSalida").add_child(load(fantasma_escena).instance())
-	get_parent().add_child(carrera)
+#	carrera.get_node("PosicionSalida").add_child(load(fantasma_escena).instance())
+#	get_parent().add_child(carrera)
 
 	get_tree().get_root().get_node("SeleccionPista").queue_free()
 
