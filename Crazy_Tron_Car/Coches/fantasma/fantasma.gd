@@ -12,7 +12,7 @@ onready var  parcial3 = get_node("parcial3")
 var vueltas = 0
 
 ## para que se mueva el cubo y no el nodo principal ###
-onready var fantasma_body = get_node("TestCube")
+onready var fantasma_body = get_node("fantasma")
 
 func _ready():
 	
