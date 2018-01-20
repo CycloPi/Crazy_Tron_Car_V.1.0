@@ -1,9 +1,9 @@
 extends Spatial
 
-#onready var fantasma_escena = preload("res://fantasma/fantasma.tscn")
+onready var tiempo 
 var numero_frame = 0
-var grabar_coche = true
-var fantasma_corre = true
+var grabar_coche = false
+var fantasma_corre = false
 onready var  meta = get_node("meta")
 onready var  parcial1 = get_node("parcial1")
 onready var  parcial2 = get_node("parcial2")
@@ -54,6 +54,9 @@ var origen_fantasma_circuito_1_2 = []
 
 ## para que se mueva el cubo y no el nodo principal ###
 onready var fantasma_body = get_node("fantasma")
+
+
+
 var direccion = "res://fantasma.json"
 func save_game():	
 	
@@ -170,12 +173,11 @@ func grabar_coche():
 	
 	
 func _fixed_process(delta):
-	if grabar_coche:
+	tiempo =  get_tree().get_root().get_node("/root/carrera/HUDpista").segundosT
+	if tiempo>=3:
 		grabar_coche()
-		
-	if fantasma_corre:
 		fantasma_corre()
-
+	print("tiempo:",tiempo)
 # area que hace que deje de grabar las posiciones del coche  "meta"
 func _on_meta_body_enter( body ):
 		
