@@ -4,7 +4,7 @@ var carrera
 
 
 
-func _load_scene(road,fantasma_escena):
+func _load_scene(road):
 	carrera = load(road).instance()
 	Global.pista = carrera.get_name()
 	carrera.set_name("carrera")
@@ -15,8 +15,8 @@ func _load_scene(road,fantasma_escena):
 	
 #	var fantasma = 
 #	get_parent().add_child(fantasma)
-	carrera.get_node("PosicionSalida").add_child(load(fantasma_escena).instance())
-	get_parent().add_child(carrera)
+#	carrera.get_node("PosicionSalida").add_child(load(fantasma_escena).instance())
+#	get_parent().add_child(carrera)
 
 	get_tree().get_root().get_node("SeleccionPista").queue_free()
 
@@ -39,17 +39,18 @@ func _on_MenuPrincipal_pressed():
 
 # Seleccionar pista Truck Town
 func _on_Pista_2_pressed():
-	_load_scene("res://Pistas/TruckTown/truck_scene.scn","res://Coches/fantasma/fantasma.tscn")
+	_load_scene("res://Pistas/TruckTown/truck_scene.scn")
 	
 # Seleccionar pista Jarama
 func _on_Pista_1_pressed():
-	_load_scene("res://Pistas/Jarama/jarama_scene.scn","res://Coches/fantasma/fantasma.tscn")
+	_load_scene("res://Pistas/Jarama/jarama_scene.scn")
 	
 # Seleccionar pista Rosco Campero
 func _on_Pista3_pressed():
-	_load_scene("res://Pistas/RoscoCampero/RoscoCampero_Scene.tscn","res://Coches/fantasma/fantasma.tscn")
+	_load_scene("res://Pistas/RoscoCampero/RoscoCampero_Scene.tscn")
 	
 # Seleccionar pista Platano
 func _on_Pista4_pressed():
-	_load_scene("res://Pistas/circuito_platano/terreno.tscn","res://Coches/fantasma/fantasma.tscn")
+	_load_scene("res://Pistas/circuito_platano/terreno.tscn")
 	
+#"res://Coches/fantasma/fantasma.tscn"

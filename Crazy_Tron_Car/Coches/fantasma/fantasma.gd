@@ -4,19 +4,42 @@ extends Spatial
 var numero_frame = 0
 var grabar_coche = true
 var fantasma_corre = true
-onready var  meta_mask = get_node("meta")
+onready var  meta = get_node("meta")
+onready var  parcial1 = get_node("parcial1")
+onready var  parcial2 = get_node("parcial2")
+onready var  parcial3 = get_node("parcial3")
+onready var  parcial4 = get_node("parcial4")
+onready var  parcial5 = get_node("parcial5")
+onready var  parcial6 = get_node("parcial6")
+onready var  parcial7 = get_node("parcial7")
+onready var  parcial8 = get_node("parcial8")
+onready var  parcial9 = get_node("parcial9")
+onready var  parcial10 = get_node("parcial10")
+
+var vueltas = 0
+
 ## para que se mueva el cubo y no el nodo principal ###
-onready var fantasma_body = get_node("TestCube")
+onready var fantasma_body = get_node("fantasma")
 
 func _ready():
 	
 	
 	GLOBAL_fantasma.load_game()
 	#### #### escone la meta del coche, esconde la leyermask (.hide no sive) ####
-	meta_mask.set_layer_mask_bit(0,0)
+	meta.set_layer_mask_bit(0,false)
+	parcial1.set_layer_mask_bit(0,true)
+	parcial2.set_layer_mask_bit(0,false)
+	parcial3.set_layer_mask_bit(0,false)
+	parcial4.set_layer_mask_bit(0,false)
+	parcial5.set_layer_mask_bit(0,false)
+	parcial6.set_layer_mask_bit(0,false)
+	parcial7.set_layer_mask_bit(0,false)
+	parcial8.set_layer_mask_bit(0,false)
+	parcial9.set_layer_mask_bit(0,false)
+	parcial10.set_layer_mask_bit(0,false)
 	grabar_coche()
 	
-	set_process_input(true)
+#	set_process_input(true)
 	set_fixed_process(true)
 	
 
@@ -40,7 +63,7 @@ func fantasma_corre():
 			pass
 		else: numero_frame +=1
 
-func grabar_coche():	
+func grabar_coche():
 	### apendiza a las listas del diccionario la matrix3x4 ####
 	var coche_nodo = get_tree().get_root().get_node("carrera/PosicionSalida/car/BODY")
 #	
@@ -60,17 +83,17 @@ func grabar_coche():
 	GLOBAL_fantasma.origen_coche_1.append(coche_nodo.get_global_transform().origin[1])
 	GLOBAL_fantasma.origen_coche_2.append(coche_nodo.get_global_transform().origin[2])
 	
-func _input(event):
-	
-	if (Input.is_action_pressed("aparece_fantasma_j")):	
-		
-		fantasma_corre = true
-	
-	if (Input.is_action_pressed("salvar")):
-		GLOBAL_fantasma.save_game()	
-	
-	if (Input.is_action_pressed("grabar h")):
-		grabar_coche = true
+#func _input(event):
+#	
+#	if (Input.is_action_pressed("aparece_fantasma_j")):	
+#		
+#		fantasma_corre = true
+#	
+#	if (Input.is_action_pressed("salvar")):
+#		GLOBAL_fantasma.save_game()	
+#	
+#	if (Input.is_action_pressed("grabar h")):
+#		grabar_coche = true
 	
 func _fixed_process(delta):
 	if grabar_coche:
@@ -82,11 +105,28 @@ func _fixed_process(delta):
 # area que hace que deje de grabar las posiciones del coche  "meta"
 func _on_meta_body_enter( body ):
  #deja de grabar y sustituye el tiempo del fantasma por el del coche si este es menor 
-	print("adioasss")
-	grabar_coche = false
+	numero_frame = 0
+	
+#	grabar_coche = false
 #	
 	if GLOBAL_fantasma.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"].empty() or GLOBAL_fantasma.posiciones_coche["posicion_coche_x_0"].size() < GLOBAL_fantasma.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"].size():
-		
+		GLOBAL_fantasma.posicion_coche_x_0.empty()
+		GLOBAL_fantasma.posicion_coche_x_1.empty()
+		GLOBAL_fantasma.posicion_coche_x_2.empty()
+	
+		GLOBAL_fantasma.posicion_coche_y_0.empty()
+		GLOBAL_fantasma.posicion_coche_y_1.empty()
+		GLOBAL_fantasma.posicion_coche_y_2.empty()
+	
+		GLOBAL_fantasma.posicion_coche_z_0.empty()
+		GLOBAL_fantasma.posicion_coche_z_1.empty()
+		GLOBAL_fantasma.posicion_coche_z_2.empty()
+	
+		GLOBAL_fantasma.origen_coche_0.empty()
+		GLOBAL_fantasma.origen_coche_1.empty()
+		GLOBAL_fantasma.origen_coche_2.empty()
+	
+		print("se_graba")
 		GLOBAL_fantasma.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_0"] = GLOBAL_fantasma.posicion_coche_x_0
 		GLOBAL_fantasma.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_1"] = GLOBAL_fantasma.posicion_coche_x_1
 		GLOBAL_fantasma.posiciones_fantasma_circuito_1["posicion_fantasma_circuito_1_x_2"] = GLOBAL_fantasma.posicion_coche_x_2
@@ -105,14 +145,83 @@ func _on_meta_body_enter( body ):
 		
 		GLOBAL_fantasma.save_game()
 #		print("entro")
-#
-#
-func _on_meta1_body_enter( body ):
-	#### hace vidible  la meta del coche, hace visible la leyermask  ####
-	print ("holaaaaa")
-	meta_mask.set_layer_mask_bit(0,1)
+
+
+	parcial1.set_layer_mask_bit(0,true)
+#	parcial10.set_layer_mask_bit(0,false)
+	meta.set_layer_mask_bit(0,false)
+	print ("meta")
+	vueltas += 1
+	print ("vueltas: " + str(vueltas))
 	
+	
+#
+#
+func _on_parcial1_body_enter( body ):
+	#### hace vidible  la meta del coche, hace visible la leyermask  ####
+	parcial2.set_layer_mask_bit(0,true)
+#	meta.set_layer_mask_bit(0,false)
+	parcial1.set_layer_mask_bit(0,false)     
+	print ("parcial1")
 	pass
+
+func _on_parcial2_body_enter( body ):
+	parcial3.set_layer_mask_bit(0,true)
+	parcial1.set_layer_mask_bit(0,false)
+	parcial2.set_layer_mask_bit(0,false)
+	print ("parcial2")
+	pass # replace with function body
+	
+func _on_parcial3_body_enter( body ):
+	parcial4.set_layer_mask_bit(0,true)
+	parcial3.set_layer_mask_bit(0,false)
+	print ("parcial3")
+	pass # replace with function body
+	
+func _on_parcial4_body_enter( body ):
+	parcial5.set_layer_mask_bit(0,true)
+	parcial4.set_layer_mask_bit(0,false)
+	print ("parcial4")
+	pass # replace with function body
+	
+func _on_parcial5_body_enter( body ):
+	parcial6.set_layer_mask_bit(0,true)
+	parcial5.set_layer_mask_bit(0,false)
+	print ("parcial5")
+	pass # replace with function body
+	
+func _on_parcial6_body_enter( body ):
+	parcial7.set_layer_mask_bit(0,true)
+	parcial6.set_layer_mask_bit(0,false)
+	print ("parcial6")
+	pass # replace with function body
+	
+func _on_parcial7_body_enter( body ):
+	parcial8.set_layer_mask_bit(0,true)
+	parcial7.set_layer_mask_bit(0,false)
+	print ("parcial7")
+	pass # replace with function body
+	
+func _on_parcial8_body_enter( body ):
+	parcial9.set_layer_mask_bit(0,true)
+	parcial8.set_layer_mask_bit(0,false)
+	print ("parcial8")
+	pass # replace with function body
+	
+func _on_parcial9_body_enter( body ):
+	parcial10.set_layer_mask_bit(0,true)
+	parcial9.set_layer_mask_bit(0,false)
+	print ("parcial9")
+	pass # replace with function body
+	
+func _on_parcial10_body_enter( body ):
+	meta.set_layer_mask_bit(0,true)
+	parcial10.set_layer_mask_bit(0,false)
+	print ("parcial10")
+	pass # replace with function body
+
+
+
 
 
 
