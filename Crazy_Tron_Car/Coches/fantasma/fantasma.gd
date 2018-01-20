@@ -2,8 +2,7 @@ extends Spatial
 
 onready var tiempo 
 var numero_frame = 0
-var grabar_coche = false
-var fantasma_corre = false
+
 onready var  meta = get_node("meta")
 onready var  parcial1 = get_node("parcial1")
 onready var  parcial2 = get_node("parcial2")
