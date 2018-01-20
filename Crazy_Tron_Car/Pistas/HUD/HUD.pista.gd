@@ -4,7 +4,7 @@ extends Control
 var direccionArchivo = "res://infojugador.json"
 var circuitoSeleccionado
 
-
+var archivoLeer 
 
 var cocheSeleccionado
 var fechaPartida
@@ -44,36 +44,21 @@ onready var fantasma = get_tree().get_root().get_node("/root/carrera/PosicionSal
 
 
 func _ready():
-#	print (Global.coche.get_node("BODY").get_name())
-	set_fixed_process(true)
-#	print("coche " + str(coche.get_name()))
-	leerJuego()
-#	print(Global.pista)
-	#print(get_parent().get_name())
 
-#	print ("leo ultima: ",diccionarioUltimaPartida)
-	
-	# leer datos actuales de partida 
-	cocheSeleccionado = coche.get_child(0).get_name() #paguardar nombre circuito
-	circuitoSeleccionado = Global.pista #guardar nobre ccoche
-	fechaPartida = OS.get_date(true) #guardar fecha partida
-	diccionarioPartida  = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida}
-	#guardopartida datos actuales de partida 
-	diccionarioPaGuardar = {"key1": diccionarioPartida}
-	
+	set_fixed_process(true)
+	#   Funciones CycloPi
+	leerJuego()
+	datosPartida()
 	guardarJuego(diccionarioPaGuardar)
-	imprimeInfo.set_text("Anterior" + str(diccionarioUltimaPartida))
-	imprimePartidaActual.set_text(("Actual" + str(diccionarioPaGuardar)))
-#	if (get_name() == str("truckCicloPi")): # el if creo que no hace falta no se si ponerlo
 	pass
 	
 func _fixed_process(delta):
-	
 	relogiko()
 	salidaFuerza()
 	cuentaAtras()
 	tiempo_vueltas()
 	posicion_miniMapa()
+	pass
 	
 	
 func posicion_miniMapa():
@@ -154,7 +139,7 @@ func guardarJuego(diccionarioGuardar):
 #	print("guardo")
 
 func leerJuego():  
-	var archivoLeer = File.new()
+	archivoLeer = File.new()
 	if not archivoLeer.file_exists(direccionArchivo):
 		return
 	
@@ -164,3 +149,18 @@ func leerJuego():
 #	print(diccionarioLeido.key1)
 	diccionarioUltimaPartida = diccionarioLeido.key1
 #	print("leeeo")
+func datosPartida():	# leer datos actuales de partida 
+	cocheSeleccionado = coche.get_child(0).get_name() #paguardar nombre circuito
+	circuitoSeleccionado = Global.pista #guardar nobre ccoche
+	fechaPartida = OS.get_date(true) #guardar fecha partida
+	diccionarioPartida  = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida}
+	#guardopartida datos actuales de partida 
+	diccionarioPaGuardar = {"key1": diccionarioPartida}
+#	imprimeInfo.set_text("Partida anterior " + str(diccionarioUltimaPartida.fecha.day) + "-" + str(diccionarioUltimaPartida.fecha.month)+"-"+ str(diccionarioUltimaPartida.fecha.year)+ " Circuito: " + str(diccionarioUltimaPartida.circuito) + " Coche: " + str(diccionarioUltimaPartida.coche))
+	if not archivoLeer.file_exists(direccionArchivo):
+		imprimeInfo.set_text("Bienvenido" )
+	else:
+		imprimeInfo.set_text("Partida anterior " + str(diccionarioUltimaPartida.fecha.day) + "-" + str(diccionarioUltimaPartida.fecha.month)+"-"+ str(diccionarioUltimaPartida.fecha.year)+ " Circuito: " + str(diccionarioUltimaPartida.circuito) + " Coche: " + str(diccionarioUltimaPartida.coche))
+	
+	imprimePartidaActual.set_text("Partida actual " + str(diccionarioPartida.fecha.day)+ "-" + str(diccionarioPartida.fecha.month)+"-"+ str(diccionarioPartida.fecha.year)+ " Circuito: " + str(diccionarioPartida.circuito) + " Coche: " + str(diccionarioPartida.coche))
+	
