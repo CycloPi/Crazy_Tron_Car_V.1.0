@@ -123,7 +123,7 @@ environment = null
 h_offset = 0.0
 v_offset = 0.0
 
-[node name="Sprite" type="Sprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+[node name="coche" type="Sprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
 
 transform/scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 2 )
