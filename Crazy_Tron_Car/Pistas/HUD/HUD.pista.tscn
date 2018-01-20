@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://Pistas/HUD/HUD.pista.gd" type="Script" id=1]
+[ext_resource path="res://Pistas/HUD/Imagenes/MarcaDelMapa.png" type="Texture" id=2]
+[ext_resource path="res://Pistas/HUD/Imagenes/MarcaDelMapaFantasma.png" type="Texture" id=3]
 
-[node name="Control" type="Control"]
+[node name="HUDpista" type="Control"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -46,20 +48,52 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Control" type="Control" parent="."]
+[node name="info" type="Label" parent="."]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 235.0
+margin/top = 650.0
+margin/right = 275.0
+margin/bottom = 681.0
+text = "3\n"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Ultima" type="Label" parent="."]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 236.0
+margin/top = 599.0
+margin/right = 279.0
+margin/bottom = 616.0
+text = "Última"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MiniMapa" type="Control" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 397.0
+margin/left = 320.0
 margin/top = 19.0
-margin/right = 482.0
+margin/right = 524.0
 margin/bottom = 110.0
 
-[node name="Viewport" type="Viewport" parent="Control"]
+[node name="Viewport" type="Viewport" parent="MiniMapa"]
 
-rect = Rect2( 0, 0, 85, 91 )
+rect = Rect2( 0, 0, 204, 91 )
 own_world = false
 world = null
 transparent_bg = true
@@ -74,9 +108,10 @@ audio_listener/enable_3d = false
 physics/object_picking = false
 gui/disable_input = false
 
-[node name="Camera" type="Camera" parent="Control/Viewport"]
+[node name="CameraMiniMapa" type="Camera" parent="MiniMapa/Viewport"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
 projection = 0
 fov = 60.0
 near = 0.1
@@ -87,6 +122,16 @@ visible_layers = 1048575
 environment = null
 h_offset = 0.0
 v_offset = 0.0
+
+[node name="coche" type="Sprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+transform/scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 2 )
+
+[node name="fantasma" type="Sprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+transform/scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 3 )
 
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
 
