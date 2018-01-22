@@ -14,6 +14,18 @@ onready var  parcial7 = get_node("parcial7")
 onready var  parcial8 = get_node("parcial8")
 onready var  parcial9 = get_node("parcial9")
 onready var  parcial10 = get_node("parcial10")
+onready var  metaVolanteMeta = get_node("meta/metaVolante")
+onready var  metaVolanteParcial1 = get_node("parcial1/metaVolante")
+onready var  metaVolanteParcial2 = get_node("parcial2/metaVolante")
+onready var  metaVolanteParcial3 = get_node("parcial3/metaVolante")
+onready var  metaVolanteParcial4 = get_node("parcial4/metaVolante")
+onready var  metaVolanteParcial5 = get_node("parcial5/metaVolante")
+onready var  metaVolanteParcial6 = get_node("parcial6/metaVolante")
+onready var  metaVolanteParcial7 = get_node("parcial7/metaVolante")
+onready var  metaVolanteParcial8 = get_node("parcial8/metaVolante")
+onready var  metaVolanteParcial9 = get_node("parcial9/metaVolante")
+onready var  metaVolanteParcial10 = get_node("parcial10/metaVolante")
+
 var vueltas = 0
 
 ############ posiciones coche ###########################################
@@ -125,6 +137,18 @@ func _ready():
 	parcial9.set_layer_mask_bit(0,false)
 	parcial10.set_layer_mask_bit(0,false)
 	
+	metaVolanteParcial1.hide()
+	metaVolanteParcial2.hide()
+	metaVolanteParcial3.hide()
+	metaVolanteParcial4.hide()
+	metaVolanteParcial5.hide()
+	metaVolanteParcial6.hide()
+	metaVolanteParcial7.hide()
+	metaVolanteParcial8.hide()
+	metaVolanteParcial9.hide()
+	metaVolanteParcial10.hide()
+	
+	
 	grabar_coche()
 	
 	set_fixed_process(true)
@@ -220,6 +244,8 @@ func _on_meta_body_enter( BODY ):
 
 	parcial1.set_layer_mask_bit(0,true)
 #	meta.set_layer_mask_bit(0,false)
+#	metaVolanteParcial3.hide()
+	metaVolanteParcial1.show()
 	print ("meta")
 	vueltas += 1
 	print ("vueltas: " + str(vueltas))
@@ -229,12 +255,17 @@ func _on_parcial1_body_enter( BODY ):
 	#### hace vidible  la meta del coche, hace visible la leyermask  ####
 	parcial2.set_layer_mask_bit(0,true)
 	meta.set_layer_mask_bit(0,false)
-#	parcial1.set_layer_mask_bit(0,false)     
+#	parcial1.set_layer_mask_bit(0,false)  
+	metaVolanteParcial1.hide()
+	metaVolanteParcial2.show()
+	   
 	print ("parcial1")
 	pass
 func _on_parcial2_body_enter( BODY ):
 	parcial3.set_layer_mask_bit(0,true)
 	parcial1.set_layer_mask_bit(0,false)
+	metaVolanteParcial2.hide()
+	metaVolanteParcial3.show()
 #	parcial2.set_layer_mask_bit(0,false)
 	print ("parcial2")
 	pass # replace with function body
@@ -243,6 +274,8 @@ func _on_parcial3_body_enter( BODY ):
 	parcial4.set_layer_mask_bit(0,true)
 #	parcial3.set_layer_mask_bit(0,false)
 	parcial2.set_layer_mask_bit(0,false)
+	metaVolanteParcial3.hide()
+	metaVolanteParcial4.show()
 	print ("parcial3")
 	pass # replace with function body
 	
@@ -250,6 +283,8 @@ func _on_parcial4_body_enter( BODY ):
 	parcial5.set_layer_mask_bit(0,true)
 #	parcial4.set_layer_mask_bit(0,false)
 	parcial3.set_layer_mask_bit(0,false)
+	metaVolanteParcial4.hide()
+	metaVolanteParcial5.show()
 	print ("parcial4")
 	pass # replace with function body
 	
@@ -257,6 +292,8 @@ func _on_parcial5_body_enter( BODY ):
 	parcial6.set_layer_mask_bit(0,true)
 #	parcial5.set_layer_mask_bit(0,false)
 	parcial4.set_layer_mask_bit(0,false)
+	metaVolanteParcial5.hide()
+	metaVolanteParcial6.show()
 	print ("parcial5")
 	pass # replace with function body
 	
@@ -264,6 +301,8 @@ func _on_parcial6_body_enter( BODY ):
 	parcial7.set_layer_mask_bit(0,true)
 #	parcial6.set_layer_mask_bit(0,false)
 	parcial5.set_layer_mask_bit(0,false)
+	metaVolanteParcial6.hide()
+	metaVolanteParcial7.show()
 	print ("parcial6")
 	pass # replace with function body
 	
@@ -271,6 +310,8 @@ func _on_parcial7_body_enter( BODY ):
 	parcial8.set_layer_mask_bit(0,true)
 #	parcial7.set_layer_mask_bit(0,false)
 	parcial6.set_layer_mask_bit(0,false)
+	metaVolanteParcial7.hide()
+	metaVolanteParcial8.show()
 	print ("parcial7")
 	pass # replace with function body
 	
@@ -278,6 +319,8 @@ func _on_parcial8_body_enter( BODY ):
 	parcial9.set_layer_mask_bit(0,true)
 #	parcial8.set_layer_mask_bit(0,false)
 	parcial7.set_layer_mask_bit(0,false)
+	metaVolanteParcial8.hide()
+	metaVolanteParcial9.show()
 	print ("parcial8")
 	pass # replace with function body
 	
@@ -285,6 +328,8 @@ func _on_parcial9_body_enter( BODY ):
 	parcial10.set_layer_mask_bit(0,true)
 #	parcial9.set_layer_mask_bit(0,false)
 	parcial8.set_layer_mask_bit(0,false)
+	metaVolanteParcial9.hide()
+	metaVolanteParcial10.show()
 	print ("parcial9")
 	pass # replace with function body
 	
@@ -292,6 +337,8 @@ func _on_parcial10_body_enter( BODY ):
 	meta.set_layer_mask_bit(0,true)
 #	parcial10.set_layer_mask_bit(0,false)
 	parcial9.set_layer_mask_bit(0,false)
+	metaVolanteParcial10.hide()
+	metaVolanteMeta.show()
 	print ("parcial10")
 	pass # replace with function body
 
