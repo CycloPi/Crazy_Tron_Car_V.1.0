@@ -42,7 +42,7 @@ input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 6, 0, 0, 0, 1, 0, 3.73448, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -60,6 +60,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="meta"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 6, 0, 0, 0, 1, 0, 3.73448, 0 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
@@ -70,14 +71,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.52862, 0 )
 
 [node name="parcial1" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.0104, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -95,6 +95,7 @@ collision/mask = 1
 [node name="CollisionShape" type="CollisionShape" parent="parcial1"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.0104, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -105,14 +106,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.96588, 1.38359 )
 
 [node name="parcial2" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2.93118, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -130,6 +130,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial2"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2.93118, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -140,14 +141,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.05138, 1.35036 )
 
 [node name="parcial3" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -165,6 +165,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial3"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -175,14 +176,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.05138, 1.47921 )
 
 [node name="parcial4" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.32729, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -200,6 +200,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial4"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.32729, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -210,14 +211,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.53903, 1.23513 )
 
 [node name="parcial5" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.16885, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -235,6 +235,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial5"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.16885, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -245,14 +246,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.99445, 1.56033 )
 
 [node name="parcial6" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.24807, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -270,6 +270,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial6"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.24807, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -280,14 +281,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.93752, 2.31533 )
 
 [node name="parcial7" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.40651, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -305,6 +305,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial7"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.40651, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -315,14 +316,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.99445, 1.78234 )
 
 [node name="parcial8" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.24807, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -340,6 +340,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial8"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.24807, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -350,14 +351,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.93752, 1.09921 )
 
 [node name="parcial9" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -375,6 +375,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial9"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -385,14 +386,13 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.93752, 1.34471 )
 
 [node name="parcial10" type="Area" parent="."]
 
-editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shapes/0/trigger = false
 space_override = 0
 gravity_point = false
@@ -410,6 +410,7 @@ collision/mask = 0
 [node name="CollisionShape" type="CollisionShape" parent="parcial10"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
