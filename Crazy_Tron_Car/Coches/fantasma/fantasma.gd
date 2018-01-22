@@ -176,9 +176,9 @@ func _fixed_process(delta):
 	if tiempo>=3:
 		grabar_coche()
 		fantasma_corre()
-	print("tiempo:",tiempo)
+#	print("tiempo:",tiempo)
 # area que hace que deje de grabar las posiciones del coche  "meta"
-func _on_meta_body_enter( body ):
+func _on_meta_body_enter( BODY ):
 		
 	if posicion_fantasma_circuito_1_x_0.empty() or posicion_coche_x_0.size() < posicion_fantasma_circuito_1_x_0.size():
 #		
@@ -225,70 +225,70 @@ func _on_meta_body_enter( body ):
 	print ("vueltas: " + str(vueltas))
 	
 
-func _on_parcial1_body_enter( body ):
+func _on_parcial1_body_enter( BODY ):
 	#### hace vidible  la meta del coche, hace visible la leyermask  ####
 	parcial2.set_layer_mask_bit(0,true)
 	meta.set_layer_mask_bit(0,false)
 #	parcial1.set_layer_mask_bit(0,false)     
 	print ("parcial1")
 	pass
-func _on_parcial2_body_enter( body ):
+func _on_parcial2_body_enter( BODY ):
 	parcial3.set_layer_mask_bit(0,true)
 	parcial1.set_layer_mask_bit(0,false)
 #	parcial2.set_layer_mask_bit(0,false)
 	print ("parcial2")
 	pass # replace with function body
 	
-func _on_parcial3_body_enter( body ):
+func _on_parcial3_body_enter( BODY ):
 	parcial4.set_layer_mask_bit(0,true)
 #	parcial3.set_layer_mask_bit(0,false)
 	parcial2.set_layer_mask_bit(0,false)
 	print ("parcial3")
 	pass # replace with function body
 	
-func _on_parcial4_body_enter( body ):
+func _on_parcial4_body_enter( BODY ):
 	parcial5.set_layer_mask_bit(0,true)
 #	parcial4.set_layer_mask_bit(0,false)
 	parcial3.set_layer_mask_bit(0,false)
 	print ("parcial4")
 	pass # replace with function body
 	
-func _on_parcial5_body_enter( body ):
+func _on_parcial5_body_enter( BODY ):
 	parcial6.set_layer_mask_bit(0,true)
 #	parcial5.set_layer_mask_bit(0,false)
 	parcial4.set_layer_mask_bit(0,false)
 	print ("parcial5")
 	pass # replace with function body
 	
-func _on_parcial6_body_enter( body ):
+func _on_parcial6_body_enter( BODY ):
 	parcial7.set_layer_mask_bit(0,true)
 #	parcial6.set_layer_mask_bit(0,false)
 	parcial5.set_layer_mask_bit(0,false)
 	print ("parcial6")
 	pass # replace with function body
 	
-func _on_parcial7_body_enter( body ):
+func _on_parcial7_body_enter( BODY ):
 	parcial8.set_layer_mask_bit(0,true)
 #	parcial7.set_layer_mask_bit(0,false)
 	parcial6.set_layer_mask_bit(0,false)
 	print ("parcial7")
 	pass # replace with function body
 	
-func _on_parcial8_body_enter( body ):
+func _on_parcial8_body_enter( BODY ):
 	parcial9.set_layer_mask_bit(0,true)
 #	parcial8.set_layer_mask_bit(0,false)
 	parcial7.set_layer_mask_bit(0,false)
 	print ("parcial8")
 	pass # replace with function body
 	
-func _on_parcial9_body_enter( body ):
+func _on_parcial9_body_enter( BODY ):
 	parcial10.set_layer_mask_bit(0,true)
 #	parcial9.set_layer_mask_bit(0,false)
 	parcial8.set_layer_mask_bit(0,false)
 	print ("parcial9")
 	pass # replace with function body
 	
-func _on_parcial10_body_enter( body ):
+func _on_parcial10_body_enter( BODY ):
 	meta.set_layer_mask_bit(0,true)
 #	parcial10.set_layer_mask_bit(0,false)
 	parcial9.set_layer_mask_bit(0,false)
