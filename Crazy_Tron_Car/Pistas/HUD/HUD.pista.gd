@@ -5,10 +5,11 @@ var direccionArchivo = "res://infojugador.json"
 var circuitoSeleccionado
 
 var archivoLeer 
-
+#variables para las vueltas
+var tiempoVuelta = 0
 var cocheSeleccionado
 var fechaPartida
-var diccionarioPartida = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida}
+var diccionarioPartida = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida,"tiempoVuelta": tiempoVuelta}
 var diccionarioPaGuardar = {"key1": diccionarioPartida}
 
 
@@ -28,7 +29,6 @@ var banderaInicioT = false
 var segundosT = 0
 var vueltas = 0 
 
-
 #variables para boqueo Salida
 onready var coche = Global.coche.get_node("BODY")
 onready var fuerzaMotor = coche.engine_force
@@ -40,6 +40,7 @@ onready var cuentaAtras = get_node("cuentaAtras")
 #onready var posicionCoche = get_node("MiniMapa/Viewport/CameraMiniMapa/posicionCoche")
 #onready var cocheMiniMapa = get_tree().get_root().get_node("/root/carrera/PosicionSalida/car")
 onready var fantasma = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/fantasma")
+onready var fantasmika = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma")
 
 
 
@@ -58,6 +59,11 @@ func _fixed_process(delta):
 	cuentaAtras()
 	tiempo_vueltas()
 	posicion_miniMapa()
+	
+	if fantasmika.vueltas > vueltas:
+		vueltas += 1
+		print("meto paso por meta")
+	
 	pass
 	
 	
@@ -116,14 +122,6 @@ func salidaFuerza():
 #		banderaEnCarrera = true
 #		print(coche.engine_force)
 
-
-func _on_Area_body_enter( body ):
-	vueltas += 1
-#	print ("vueltas: " + str(vueltas) )
-	
-	pass
-
-
 func _on_Back_pressed():
 	
 	get_tree().get_root().get_node("carrera").queue_free()
@@ -160,7 +158,7 @@ func datosPartida():	# leer datos actuales de partida
 	if not archivoLeer.file_exists(direccionArchivo):
 		imprimeInfo.set_text("Bienvenido" )
 	else:
-		imprimeInfo.set_text("Partida anterior " + str(diccionarioUltimaPartida.fecha.day) + "-" + str(diccionarioUltimaPartida.fecha.month)+"-"+ str(diccionarioUltimaPartida.fecha.year)+ " Circuito: " + str(diccionarioUltimaPartida.circuito) + " Coche: " + str(diccionarioUltimaPartida.coche))
+		imprimeInfo.set_text("Partida anterior " + str(diccionarioUltimaPartida.fecha.day) + "-" + str(diccionarioUltimaPartida.fecha.month)+"-"+ str(diccionarioUltimaPartida.fecha.year)+ " Circuito: " + str(diccionarioUltimaPartida.circuito) + " Coche: " + str(diccionarioUltimaPartida.coche)+" tiempo: ")
 	
 	imprimePartidaActual.set_text("Partida actual " + str(diccionarioPartida.fecha.day)+ "-" + str(diccionarioPartida.fecha.month)+"-"+ str(diccionarioPartida.fecha.year)+ " Circuito: " + str(diccionarioPartida.circuito) + " Coche: " + str(diccionarioPartida.coche))
 	
