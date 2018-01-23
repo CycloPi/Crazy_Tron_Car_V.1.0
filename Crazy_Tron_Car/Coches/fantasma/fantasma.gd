@@ -122,8 +122,29 @@ func load_game():
 
 func _ready():
 	
-	
 	load_game()
+	iniciar_parciales()
+	iniciar_metasVolantes()
+	grabar_coche()
+	set_fixed_process(true)
+	
+	
+	
+	
+	
+func iniciar_metasVolantes():
+	metaVolanteParcial1.show()
+	metaVolanteParcial2.hide()
+	metaVolanteParcial3.hide()
+	metaVolanteParcial4.hide()
+	metaVolanteParcial5.hide()
+	metaVolanteParcial6.hide()
+	metaVolanteParcial7.hide()
+	metaVolanteParcial8.hide()
+	metaVolanteParcial9.hide()
+	metaVolanteParcial10.hide()
+	
+func iniciar_parciales():
 	#### #### escone la meta del coche, esconde la leyermask (.hide no sive) ####
 	meta.set_layer_mask_bit(0,false)
 	parcial1.set_layer_mask_bit(0,true)
@@ -136,24 +157,6 @@ func _ready():
 	parcial8.set_layer_mask_bit(0,false)
 	parcial9.set_layer_mask_bit(0,false)
 	parcial10.set_layer_mask_bit(0,false)
-	
-	metaVolanteParcial1.show()
-	metaVolanteParcial2.hide()
-	metaVolanteParcial3.hide()
-	metaVolanteParcial4.hide()
-	metaVolanteParcial5.hide()
-	metaVolanteParcial6.hide()
-	metaVolanteParcial7.hide()
-	metaVolanteParcial8.hide()
-	metaVolanteParcial9.hide()
-	metaVolanteParcial10.hide()
-	
-	
-	grabar_coche()
-	
-	set_fixed_process(true)
-	
-
 
 ### hace correr al fantasma recorriendo las listas del diccionario con "numero_frame" ###
 func fantasma_corre():
