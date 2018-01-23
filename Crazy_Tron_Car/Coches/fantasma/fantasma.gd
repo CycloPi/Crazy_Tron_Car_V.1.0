@@ -137,7 +137,7 @@ func _ready():
 	parcial9.set_layer_mask_bit(0,false)
 	parcial10.set_layer_mask_bit(0,false)
 	
-	metaVolanteParcial1.hide()
+	metaVolanteParcial1.show()
 	metaVolanteParcial2.hide()
 	metaVolanteParcial3.hide()
 	metaVolanteParcial4.hide()
