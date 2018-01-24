@@ -2,7 +2,9 @@ extends Spatial
 
 onready var tiempo 
 var numero_frame = 0
+### detecto pista ####
 onready var circuito = get_tree().get_root().get_node("/root/carrera/HUDpista")
+
 onready var  meta = get_node("meta")
 onready var  parcial1 = get_node("parcial1")
 onready var  parcial2 = get_node("parcial2")
@@ -47,24 +49,28 @@ var origen_coche_2 = []
 
 ### posiciones circuito####
 
+
 var posicion_fantasma_circuito_x_0= []
 var posicion_fantasma_circuito_x_1= []
-var posicion_fantasma_circuito_x_2= []
-
-var posicion_fantasma_circuito_y_0= []
+var	posicion_fantasma_circuito_x_2= []
+#
+var	posicion_fantasma_circuito_y_0= []
 var posicion_fantasma_circuito_y_1= []
-var posicion_fantasma_circuito_y_2= []	
+var	posicion_fantasma_circuito_y_2= []
+	
+var	posicion_fantasma_circuito_z_0= []
+var	posicion_fantasma_circuito_z_1= []
+var	posicion_fantasma_circuito_z_2= []
+	
+var	origen_fantasma_circuito_0= []
+var	origen_fantasma_circuito_1= []
+var	origen_fantasma_circuito_2= []
 
-var posicion_fantasma_circuito_z_0= []
-var posicion_fantasma_circuito_z_1= []
-var posicion_fantasma_circuito_z_2= []	
-
-var origen_fantasma_circuito_0= []
-var origen_fantasma_circuito_1= []
-var origen_fantasma_circuito_2= []
 
 ## para que se mueva el cubo y no el nodo principal ###
 onready var fantasma_body = get_node("fantasma")
+
+
 
 var direccion = "res://fantasma.json"
 func save_game():	
@@ -85,6 +91,7 @@ func save_game():
 	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_0": origen_fantasma_circuito_0,
 	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_1": origen_fantasma_circuito_1,
 	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_2": origen_fantasma_circuito_2
+	
 	}
 	
 	var file = File.new()
@@ -100,11 +107,10 @@ func load_game():
 	
 	file.open(direccion, File.READ)
 	var data = {}
-	data.parse_json(file.get_as_text()
+	data.parse_json(file.get_as_text())
 	
-	
-	if circuito.circuitoSeleccionado == "terreno": 
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_terreno_x_0
+	if circuito.circuitoSeleccionado == "terreno":
+		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_terreno_x_1
 		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_terreno_x_1
 		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_terreno_x_2
 	
@@ -119,34 +125,31 @@ func load_game():
 		origen_fantasma_circuito_0 = data.origen_fantasma_terreno_0
 		origen_fantasma_circuito_1 = data.origen_fantasma_terreno_1
 		origen_fantasma_circuito_2 = data.origen_fantasma_terreno_2
-
-	if circuito.circuitoSeleccionado == "Jarama_scene": 
-		
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_Jarama_scene_x_0
-		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_Jarama_scene_x_1
-		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_Jarama_scene_x_2
 	
-		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_Jarama_scene_y_0
-		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_Jarama_scene_y_1
-		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_Jarama_scene_2
+	if circuito.circuitoSeleccionado == "jarama_scene":
+		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_jarama_scene_x_1
+		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_jarama_scene_x_1
+		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_jarama_scene_x_2
 	
-		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_Jarama_scene_z_0
-		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_Jarama_scene_z_1
-		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_Jarama_scene_z_2
+		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_jarama_scene_y_0
+		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_jarama_scene_y_1
+		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_jarama_scene_y_2
+	
+		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_jarama_scene_z_0
+		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_jarama_scene_z_1
+		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_jarama_scene_z_2
 
-		origen_fantasma_circuito_0 = data.origen_fantasma_Jarama_scene_0
-		origen_fantasma_circuito_1 = data.origen_fantasma_Jarama_scene_1
-		origen_fantasma_circuito_2 = data.origen_fantasma_Jarama_scene_2
-
-	if circuito.circuitoSeleccionado == "RoscoCampero_scene": 
-		
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_RoscoCampero_scene_x_0
+		origen_fantasma_circuito_0 = data.origen_fantasma_jarama_scene_0
+		origen_fantasma_circuito_1 = data.origen_fantasma_jarama_scene_1
+		origen_fantasma_circuito_2 = data.origen_fantasma_jarama_scene_2
+	if circuito.circuitoSeleccionado == "RoscoCampero_scene":
+		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_RoscoCampero_scene_x_1
 		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_RoscoCampero_scene_x_1
 		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_RoscoCampero_scene_x_2
 	
 		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_RoscoCampero_scene_y_0
 		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_RoscoCampero_scene_y_1
-		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_RoscoCampero_scene_2
+		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_RoscoCampero_scene_y_2
 	
 		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_RoscoCampero_scene_z_0
 		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_RoscoCampero_scene_z_1
@@ -155,51 +158,11 @@ func load_game():
 		origen_fantasma_circuito_0 = data.origen_fantasma_RoscoCampero_scene_0
 		origen_fantasma_circuito_1 = data.origen_fantasma_RoscoCampero_scene_1
 		origen_fantasma_circuito_2 = data.origen_fantasma_RoscoCampero_scene_2
-	
-	if circuito.circuitoSeleccionado == "town_scene": 
-		
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_town_scene_x_0
-		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_town_scene_x_1
-		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_town_scene_x_2
-	
-		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_town_scene_y_0
-		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_town_scene_y_1
-		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_town_scene_2
-	
-		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_town_scene_z_0
-		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_town_scene_z_1
-		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_town_scene_z_2
 
-		origen_fantasma_circuito_0 = data.origen_fantasma_town_scene_0
-		origen_fantasma_circuito_1 = data.origen_fantasma_town_scene_1
-		origen_fantasma_circuito_2 = data.origen_fantasma_town_scene_2	
-	else:
-		pass
 func _ready():
 	
+	print (circuito)
 	load_game()
-	iniciar_parciales()
-	iniciar_metasVolantes()
-	grabar_coche()
-	set_fixed_process(true)
-	
-	
-	
-	
-	
-func iniciar_metasVolantes():
-	metaVolanteParcial1.show()
-	metaVolanteParcial2.hide()
-	metaVolanteParcial3.hide()
-	metaVolanteParcial4.hide()
-	metaVolanteParcial5.hide()
-	metaVolanteParcial6.hide()
-	metaVolanteParcial7.hide()
-	metaVolanteParcial8.hide()
-	metaVolanteParcial9.hide()
-	metaVolanteParcial10.hide()
-	
-func iniciar_parciales():
 	#### #### escone la meta del coche, esconde la leyermask (.hide no sive) ####
 	meta.set_layer_mask_bit(0,false)
 	parcial1.set_layer_mask_bit(0,true)
@@ -212,6 +175,24 @@ func iniciar_parciales():
 	parcial8.set_layer_mask_bit(0,false)
 	parcial9.set_layer_mask_bit(0,false)
 	parcial10.set_layer_mask_bit(0,false)
+	
+	metaVolanteParcial1.show()
+	metaVolanteParcial2.hide()
+	metaVolanteParcial3.hide()
+	metaVolanteParcial4.hide()
+	metaVolanteParcial5.hide()
+	metaVolanteParcial6.hide()
+	metaVolanteParcial7.hide()
+	metaVolanteParcial8.hide()
+	metaVolanteParcial9.hide()
+	metaVolanteParcial10.hide()
+	
+	
+	grabar_coche()
+	
+	set_fixed_process(true)
+	
+
 
 ### hace correr al fantasma recorriendo las listas del diccionario con "numero_frame" ###
 func fantasma_corre():
@@ -228,7 +209,7 @@ func fantasma_corre():
 		Vector3(posicion_fantasma_circuito_z_0[numero_frame] , posicion_fantasma_circuito_z_1[numero_frame] , posicion_fantasma_circuito_z_2[numero_frame]),
 		Vector3(origen_fantasma_circuito_0[numero_frame],origen_fantasma_circuito_1[numero_frame],origen_fantasma_circuito_2[numero_frame])))
 		
-		if numero_frame >= posicion_fantasma_circuito_1_x_0.size()-1:
+		if numero_frame >= posicion_fantasma_circuito_x_0.size()-1:
 			pass
 		else: numero_frame +=1
 
@@ -254,8 +235,11 @@ func grabar_coche():
 	
 	
 func _fixed_process(delta):
+	
+#	print(circuito.circuitoSeleccionado)
+	
 	tiempo =  get_tree().get_root().get_node("/root/carrera/HUDpista").segundosT
-	if tiempo>=3:
+	if tiempo>=3:  
 		grabar_coche()
 		fantasma_corre()
 #	print("tiempo:",tiempo)
@@ -301,7 +285,8 @@ func _on_meta_body_enter( BODY ):
 	origen_coche_2.clear()
 
 	parcial1.set_layer_mask_bit(0,true)
-	meta.set_layer_mask_bit(0,false)
+#	meta.set_layer_mask_bit(0,false)
+#	metaVolanteParcial3.hide()
 	metaVolanteParcial1.show()
 	print ("meta")
 	vueltas += 1
@@ -312,8 +297,10 @@ func _on_parcial1_body_enter( BODY ):
 	#### hace vidible  la meta del coche, hace visible la leyermask  ####
 	parcial2.set_layer_mask_bit(0,true)
 	meta.set_layer_mask_bit(0,false)
+#	parcial1.set_layer_mask_bit(0,false)  
 	metaVolanteParcial1.hide()
 	metaVolanteParcial2.show()
+	   
 	print ("parcial1")
 	pass
 func _on_parcial2_body_enter( BODY ):
@@ -321,11 +308,13 @@ func _on_parcial2_body_enter( BODY ):
 	parcial1.set_layer_mask_bit(0,false)
 	metaVolanteParcial2.hide()
 	metaVolanteParcial3.show()
+#	parcial2.set_layer_mask_bit(0,false)
 	print ("parcial2")
 	pass # replace with function body
 	
 func _on_parcial3_body_enter( BODY ):
 	parcial4.set_layer_mask_bit(0,true)
+#	parcial3.set_layer_mask_bit(0,false)
 	parcial2.set_layer_mask_bit(0,false)
 	metaVolanteParcial3.hide()
 	metaVolanteParcial4.show()
@@ -334,6 +323,7 @@ func _on_parcial3_body_enter( BODY ):
 	
 func _on_parcial4_body_enter( BODY ):
 	parcial5.set_layer_mask_bit(0,true)
+#	parcial4.set_layer_mask_bit(0,false)
 	parcial3.set_layer_mask_bit(0,false)
 	metaVolanteParcial4.hide()
 	metaVolanteParcial5.show()
@@ -342,6 +332,7 @@ func _on_parcial4_body_enter( BODY ):
 	
 func _on_parcial5_body_enter( BODY ):
 	parcial6.set_layer_mask_bit(0,true)
+#	parcial5.set_layer_mask_bit(0,false)
 	parcial4.set_layer_mask_bit(0,false)
 	metaVolanteParcial5.hide()
 	metaVolanteParcial6.show()
@@ -350,6 +341,7 @@ func _on_parcial5_body_enter( BODY ):
 	
 func _on_parcial6_body_enter( BODY ):
 	parcial7.set_layer_mask_bit(0,true)
+#	parcial6.set_layer_mask_bit(0,false)
 	parcial5.set_layer_mask_bit(0,false)
 	metaVolanteParcial6.hide()
 	metaVolanteParcial7.show()
@@ -358,6 +350,7 @@ func _on_parcial6_body_enter( BODY ):
 	
 func _on_parcial7_body_enter( BODY ):
 	parcial8.set_layer_mask_bit(0,true)
+#	parcial7.set_layer_mask_bit(0,false)
 	parcial6.set_layer_mask_bit(0,false)
 	metaVolanteParcial7.hide()
 	metaVolanteParcial8.show()
@@ -366,6 +359,7 @@ func _on_parcial7_body_enter( BODY ):
 	
 func _on_parcial8_body_enter( BODY ):
 	parcial9.set_layer_mask_bit(0,true)
+#	parcial8.set_layer_mask_bit(0,false)
 	parcial7.set_layer_mask_bit(0,false)
 	metaVolanteParcial8.hide()
 	metaVolanteParcial9.show()
@@ -374,6 +368,7 @@ func _on_parcial8_body_enter( BODY ):
 	
 func _on_parcial9_body_enter( BODY ):
 	parcial10.set_layer_mask_bit(0,true)
+#	parcial9.set_layer_mask_bit(0,false)
 	parcial8.set_layer_mask_bit(0,false)
 	metaVolanteParcial9.hide()
 	metaVolanteParcial10.show()
@@ -382,6 +377,7 @@ func _on_parcial9_body_enter( BODY ):
 	
 func _on_parcial10_body_enter( BODY ):
 	meta.set_layer_mask_bit(0,true)
+#	parcial10.set_layer_mask_bit(0,false)
 	parcial9.set_layer_mask_bit(0,false)
 	metaVolanteParcial10.hide()
 	metaVolanteMeta.show()
