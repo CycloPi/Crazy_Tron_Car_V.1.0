@@ -1,20 +1,19 @@
 extends Control
 
-
+# variables guardadas
+var diccionarioUltimaPartida
 var direccionArchivo = "res://infojugador.json"
 var circuitoSeleccionado
-
 var archivoLeer 
+
 #variables para las vueltas
 var tiempoVuelta = 0
 var cocheSeleccionado
 var fechaPartida
-var diccionarioPartida = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida,"tiempoVuelta": tiempoVuelta}
-var diccionarioPaGuardar = {"key1": diccionarioPartida}
-
-
-# variables guardadas
-var diccionarioUltimaPartida
+var diccionarioPartida = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida}
+var diccionarioTiempos = {"Tvuela": tiempoVuelta}
+var diccionarioUltimosTiempos
+var diccionarioPaGuardar = {"partida": diccionarioPartida, "tiempos":diccionarioTiempos}
 
 # variables info cicloPi
 onready var imprimeInfo = get_node("Ultima")
@@ -71,9 +70,24 @@ func _fixed_process(delta):
 	tiempo_vueltas()
 	posicion_miniMapa()
 	
+	#funcion en pruebas:
+	# No no no funciona el contador de vueltas del fantasma
+	# solo marca la primera: 
+	#
+	#print(fantasmika.vueltas)
+	#
+	# Solo cuenta una vez , No entra en el area lo he emirado
+	# grabar tiempo
+	
+	grabarTiempos()
+	
 	if fantasmika.vueltas > vueltas:
+		tiempoVuelta = segundosT
 		vueltas += 1
-		print("meto paso por meta")
+		diccionarioTiempos.Tvuela = tiempoVuelta
+		diccionarioPaGuardar.tiempos = diccionarioTiempos
+		guardarJuego(diccionarioPaGuardar)
+		print("meto paso por meta, tiempo de vuelta: " + str(tiempoVuelta) +" segundos." )
 	
 	pass
 	
@@ -167,16 +181,22 @@ func leerJuego():
 	archivoLeer.open(direccionArchivo, File.READ)
 	var diccionarioLeido = {}
 	diccionarioLeido.parse_json(archivoLeer.get_as_text())
-#	print(diccionarioLeido.key1)
-	diccionarioUltimaPartida = diccionarioLeido.key1
+#	print(diccionarioLeido.key1p)
+	diccionarioUltimaPartida = diccionarioLeido.partida
+	print("tiempoleido")
+	diccionarioUltimosTiempos = diccionarioLeido.tiempos
+	print(diccionarioUltimosTiempos)
 #	print("leeeo")
+
+
 func datosPartida():	# leer datos actuales de partida 
 	cocheSeleccionado = coche.get_child(0).get_name() #paguardar nombre circuito
 	circuitoSeleccionado = Global.pista #guardar nobre ccoche
 	fechaPartida = OS.get_date(true) #guardar fecha partida
-	diccionarioPartida  = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida}
+	diccionarioPartida  = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida, "tiempoVuelta": tiempoVuelta}
 	#guardopartida datos actuales de partida 
-	diccionarioPaGuardar = {"key1": diccionarioPartida}
+	
+	diccionarioPaGuardar.partida = diccionarioPartida
 #	imprimeInfo.set_text("Partida anterior " + str(diccionarioUltimaPartida.fecha.day) + "-" + str(diccionarioUltimaPartida.fecha.month)+"-"+ str(diccionarioUltimaPartida.fecha.year)+ " Circuito: " + str(diccionarioUltimaPartida.circuito) + " Coche: " + str(diccionarioUltimaPartida.coche))
 	if not archivoLeer.file_exists(direccionArchivo):
 		imprimeInfo.set_text("Bienvenido" )
@@ -184,4 +204,13 @@ func datosPartida():	# leer datos actuales de partida
 		imprimeInfo.set_text("Partida anterior " + str(diccionarioUltimaPartida.fecha.day) + "-" + str(diccionarioUltimaPartida.fecha.month)+"-"+ str(diccionarioUltimaPartida.fecha.year)+ " Circuito: " + str(diccionarioUltimaPartida.circuito) + " Coche: " + str(diccionarioUltimaPartida.coche)+" tiempo: ")
 	
 	imprimePartidaActual.set_text("Partida actual " + str(diccionarioPartida.fecha.day)+ "-" + str(diccionarioPartida.fecha.month)+"-"+ str(diccionarioPartida.fecha.year)+ " Circuito: " + str(diccionarioPartida.circuito) + " Coche: " + str(diccionarioPartida.coche))
+
+func grabarTiempos():
+	if fantasmika.vueltas > vueltas:
+		tiempoVuelta = segundosT
+		vueltas += 1
+		diccionarioTiempos.Tvuela = tiempoVuelta
+		diccionarioPaGuardar.tiempos = diccionarioTiempos
+		guardarJuego(diccionarioPaGuardar)
+		print("meto paso por meta, tiempo de vuelta: " + str(tiempoVuelta) +" segundos." )
 	
