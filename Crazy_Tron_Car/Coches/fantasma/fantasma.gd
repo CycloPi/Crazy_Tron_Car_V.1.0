@@ -262,7 +262,7 @@ func _fixed_process(delta):
 # area que hace que deje de grabar las posiciones del coche  "meta"
 func _on_meta_body_enter( BODY ):
 		
-	if posicion_fantasma_circuito_1_x_0.empty() or posicion_coche_x_0.size() < posicion_fantasma_circuito_1_x_0.size():
+	if posicion_fantasma_circuito_x_0.empty() or posicion_coche_x_0.size() < posicion_fantasma_circuito_x_0.size():
 #		
 		posicion_fantasma_circuito_x_0 = posicion_coche_x_0
 		posicion_fantasma_circuito_x_1 = posicion_coche_x_1
