@@ -73,7 +73,7 @@ func relogiko():
 		
 	#print(((OS.get_ticks_msec()-tiempoInicio)/1000))
 	segundosT = ((OS.get_ticks_msec()-tiempoInicio)/1000)
-	imprimeTiempo.set_text(str(int(segundosT))+" s")
+	imprimeTiempo.set_text(str(int((segundosT-3)))+" s")
 	pass
 	
 func velocidad():
