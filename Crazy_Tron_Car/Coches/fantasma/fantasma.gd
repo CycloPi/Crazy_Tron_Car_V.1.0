@@ -110,7 +110,7 @@ func load_game():
 	data.parse_json(file.get_as_text())
 	
 	if circuito.circuitoSeleccionado == "terreno":
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_terreno_x_1
+		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_terreno_x_0
 		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_terreno_x_1
 		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_terreno_x_2
 	
