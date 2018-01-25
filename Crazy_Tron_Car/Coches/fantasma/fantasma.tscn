@@ -1,13 +1,52 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Coches/fantasma/fantasma.gd" type="Script" id=1]
 [ext_resource path="res://Pistas/Atrezo/MetaVolante/metaVolante.scn" type="PackedScene" id=2]
+[ext_resource path="res://Pistas/Atrezo/MetaVolante/meta.png" type="Texture" id=3]
 
 [sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 10, 1, 1.75373 )
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="FixedMaterial" id=2]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = false
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0.0
+fixed_flags/use_alpha = false
+fixed_flags/use_color_array = false
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 1, 1, 1, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1.0
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1.0
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse = ExtResource( 3 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[sub_resource type="BoxShape" id=3]
 
 extents = Vector3( 12.1259, 1, 1 )
 
@@ -69,6 +108,10 @@ _update_shape_index = 0
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.52862, 0 )
 
+[node name="Cylinder" parent="meta/metaVolante"]
+
+material/0 = SubResource( 2 )
+
 [node name="posMetaVolante" type="TestCube" parent="meta"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -90,12 +133,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial1" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.0104, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -115,7 +159,7 @@ collision/mask = 1
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.0104, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -144,12 +188,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial2" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2.93118, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -169,7 +214,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2.93118, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -198,12 +243,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial3" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -223,7 +269,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -252,12 +298,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial4" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.32729, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -277,7 +324,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.32729, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -306,12 +353,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial5" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.16885, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -331,7 +379,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.16885, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -360,12 +408,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial6" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.24807, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -385,7 +434,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.24807, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -414,12 +463,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial7" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.40651, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -439,7 +489,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.40651, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -468,12 +518,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial8" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.24807, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -493,7 +544,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.24807, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -522,12 +573,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial9" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -547,7 +599,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -576,12 +628,13 @@ geometry/baked_light_tex_id = 0
 
 [node name="parcial10" type="Area" parent="."]
 
+editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
 shapes/0/trigger = false
 space_override = 0
@@ -601,7 +654,7 @@ collision/mask = 0
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.08962, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -651,3 +704,4 @@ geometry/baked_light_tex_id = 0
 [connection signal="body_enter" from="parcial10" to="." method="_on_parcial10_body_enter"]
 
 
+[editable path="meta/metaVolante"]
