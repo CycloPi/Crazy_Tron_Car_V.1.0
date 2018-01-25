@@ -3,6 +3,8 @@ extends Spatial
 onready var tiempo 
 var numero_frame = 0
 
+onready var HUDpista = get_tree().get_root().get_node("/root/carrera/HUDpista")
+
 onready var  meta = get_node("meta")
 onready var  parcial1 = get_node("parcial1")
 onready var  parcial2 = get_node("parcial2")
@@ -121,7 +123,7 @@ func load_game():
 	origen_fantasma_circuito_1_2 = data.origen_fantasma_circuito_1_2
 
 func _ready():
-	
+
 	load_game()
 	iniciar_parciales()
 	iniciar_metasVolantes()
@@ -205,6 +207,9 @@ func _fixed_process(delta):
 		fantasma_corre()
 #	print("tiempo:",tiempo)
 # area que hace que deje de grabar las posiciones del coche  "meta"
+
+	
+
 func _on_meta_body_enter( BODY ):
 		
 	if posicion_fantasma_circuito_1_x_0.empty() or posicion_coche_x_0.size() < posicion_fantasma_circuito_1_x_0.size():
@@ -248,6 +253,9 @@ func _on_meta_body_enter( BODY ):
 	parcial1.set_layer_mask_bit(0,true)
 	meta.set_layer_mask_bit(0,false)
 	metaVolanteParcial1.show()
+	HUDpista.metaVolante.hide()
+	HUDpista.parcial1Volante.show()
+	
 	print ("meta")
 	vueltas += 1
 	print ("vueltas: " + str(vueltas))
@@ -259,6 +267,8 @@ func _on_parcial1_body_enter( BODY ):
 	meta.set_layer_mask_bit(0,false)
 	metaVolanteParcial1.hide()
 	metaVolanteParcial2.show()
+	HUDpista.parcial1Volante.hide()
+	HUDpista.parcial2Volante.show()
 	print ("parcial1")
 	pass
 func _on_parcial2_body_enter( BODY ):
@@ -266,6 +276,8 @@ func _on_parcial2_body_enter( BODY ):
 	parcial1.set_layer_mask_bit(0,false)
 	metaVolanteParcial2.hide()
 	metaVolanteParcial3.show()
+	HUDpista.parcial2Volante.hide()
+	HUDpista.parcial3Volante.show()
 	print ("parcial2")
 	pass # replace with function body
 	
@@ -274,6 +286,8 @@ func _on_parcial3_body_enter( BODY ):
 	parcial2.set_layer_mask_bit(0,false)
 	metaVolanteParcial3.hide()
 	metaVolanteParcial4.show()
+	HUDpista.parcial3Volante.hide()
+	HUDpista.parcial4Volante.show()
 	print ("parcial3")
 	pass # replace with function body
 	
@@ -282,6 +296,8 @@ func _on_parcial4_body_enter( BODY ):
 	parcial3.set_layer_mask_bit(0,false)
 	metaVolanteParcial4.hide()
 	metaVolanteParcial5.show()
+	HUDpista.parcial4Volante.hide()
+	HUDpista.parcial5Volante.show()
 	print ("parcial4")
 	pass # replace with function body
 	
@@ -290,6 +306,8 @@ func _on_parcial5_body_enter( BODY ):
 	parcial4.set_layer_mask_bit(0,false)
 	metaVolanteParcial5.hide()
 	metaVolanteParcial6.show()
+	HUDpista.parcial5Volante.hide()
+	HUDpista.parcial6Volante.show()
 	print ("parcial5")
 	pass # replace with function body
 	
@@ -298,6 +316,8 @@ func _on_parcial6_body_enter( BODY ):
 	parcial5.set_layer_mask_bit(0,false)
 	metaVolanteParcial6.hide()
 	metaVolanteParcial7.show()
+	HUDpista.parcial6Volante.hide()
+	HUDpista.parcial7Volante.show()
 	print ("parcial6")
 	pass # replace with function body
 	
@@ -306,6 +326,8 @@ func _on_parcial7_body_enter( BODY ):
 	parcial6.set_layer_mask_bit(0,false)
 	metaVolanteParcial7.hide()
 	metaVolanteParcial8.show()
+	HUDpista.parcial7Volante.hide()
+	HUDpista.parcial8Volante.show()
 	print ("parcial7")
 	pass # replace with function body
 	
@@ -314,6 +336,8 @@ func _on_parcial8_body_enter( BODY ):
 	parcial7.set_layer_mask_bit(0,false)
 	metaVolanteParcial8.hide()
 	metaVolanteParcial9.show()
+	HUDpista.parcial8Volante.hide()
+	HUDpista.parcial9Volante.show()
 	print ("parcial8")
 	pass # replace with function body
 	
@@ -322,6 +346,8 @@ func _on_parcial9_body_enter( BODY ):
 	parcial8.set_layer_mask_bit(0,false)
 	metaVolanteParcial9.hide()
 	metaVolanteParcial10.show()
+	HUDpista.parcial9Volante.hide()
+	HUDpista.parcial10Volante.show()
 	print ("parcial9")
 	pass # replace with function body
 	
@@ -330,6 +356,8 @@ func _on_parcial10_body_enter( BODY ):
 	parcial9.set_layer_mask_bit(0,false)
 	metaVolanteParcial10.hide()
 	metaVolanteMeta.show()
+	HUDpista.parcial10Volante.hide()
+	HUDpista.metaVolante.show()
 	print ("parcial10")
 	pass # replace with function body
 
