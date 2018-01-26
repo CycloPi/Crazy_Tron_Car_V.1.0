@@ -257,6 +257,7 @@ func _on_meta_body_enter( BODY ):
 	HUDpista.parcial1Volante.show()
 	
 	print ("meta")
+	print ("Acho aqui solo entra una vez")
 	vueltas += 1
 	print ("vueltas: " + str(vueltas))
 	
