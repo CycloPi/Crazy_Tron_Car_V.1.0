@@ -40,6 +40,7 @@ onready var cuentaAtras = get_node("cuentaAtras")
 #onready var cocheMiniMapa = get_tree().get_root().get_node("/root/carrera/PosicionSalida/car")
 onready var fantasma = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/fantasma")
 onready var fantasmika = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma")
+
 onready var meta = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/meta")
 onready var parcial1 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial1")
 onready var parcial2 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial2")
@@ -51,6 +52,71 @@ onready var parcial7 = get_tree().get_root().get_node("/root/carrera/PosicionSal
 onready var parcial8 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial8")
 onready var parcial9 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial9")
 onready var parcial10 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial10")
+
+
+onready var parcial1Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante1")
+onready var parcial2Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante2")
+onready var parcial3Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante3")
+onready var parcial4Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante4")
+onready var parcial5Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante5")
+onready var parcial6Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante6")
+onready var parcial7Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante7")
+onready var parcial8Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante8")
+onready var parcial9Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante9")
+onready var parcial10Volante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante10")
+onready var metaVolante = get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante")
+
+func posicion_miniMapa():
+	#print (posicion0Coche)
+	#print (cocheMiniMapa.get_name())
+	#print(coche.get_transform().origin)
+	var CameraMiniMapa = get_node("MiniMapa/Viewport/CameraMiniMapa")
+	var cochePos = CameraMiniMapa.unproject_position(coche.get_transform().origin)
+	var fantasmaPos = CameraMiniMapa.unproject_position(fantasma.get_transform().origin)
+	
+	var metaPos = CameraMiniMapa.unproject_position(meta.get_transform().origin)
+	var parcial1Pos = CameraMiniMapa.unproject_position(parcial1.get_transform().origin)
+	var parcial2Pos = CameraMiniMapa.unproject_position(parcial2.get_transform().origin)
+	var parcial3Pos = CameraMiniMapa.unproject_position(parcial3.get_transform().origin)
+	var parcial4Pos = CameraMiniMapa.unproject_position(parcial4.get_transform().origin)
+	var parcial5Pos = CameraMiniMapa.unproject_position(parcial5.get_transform().origin)
+	var parcial6Pos = CameraMiniMapa.unproject_position(parcial6.get_transform().origin)
+	var parcial7Pos = CameraMiniMapa.unproject_position(parcial7.get_transform().origin)
+	var parcial8Pos = CameraMiniMapa.unproject_position(parcial8.get_transform().origin)
+	var parcial9Pos = CameraMiniMapa.unproject_position(parcial9.get_transform().origin)
+	var parcial10Pos = CameraMiniMapa.unproject_position(parcial10.get_transform().origin)
+
+	
+	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
+#	print (str(fantasma) + str(fantasma.get_tree()) + str(fantasma.get_filename())) 
+	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_pos(cochePos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
+
+	parcial1Volante.set_pos(parcial1Pos)
+	parcial2Volante.set_pos(parcial2Pos)
+	parcial3Volante.set_pos(parcial3Pos)
+	parcial4Volante.set_pos(parcial4Pos)
+	parcial5Volante.set_pos(parcial5Pos)
+	parcial6Volante.set_pos(parcial6Pos)
+	parcial7Volante.set_pos(parcial7Pos)
+	parcial8Volante.set_pos(parcial8Pos)
+	parcial9Volante.set_pos(parcial9Pos)
+	parcial10Volante.set_pos(parcial10Pos)
+	metaVolante.set_pos(metaPos)
+	
+	
+#	metaVolante.hide()
+#	parcial1Volante.hide()
+#	parcial2Volante.hide()
+#	parcial3Volante.hide()
+#	parcial4Volante.hide()
+#	parcial5Volante.hide()
+#	parcial6Volante.hide()
+#	parcial7Volante.hide()
+#	parcial8Volante.hide()
+#	parcial9Volante.hide()
+#	parcial10Volante.hide()
+	pass
 
 
 
@@ -92,30 +158,6 @@ func _fixed_process(delta):
 	pass
 	
 	
-func posicion_miniMapa():
-	#print (posicion0Coche)
-	#print (cocheMiniMapa.get_name())
-	#print(coche.get_transform().origin)
-	var CameraMiniMapa = get_node("MiniMapa/Viewport/CameraMiniMapa")
-	var cochePos = CameraMiniMapa.unproject_position(coche.get_transform().origin)
-	var fantasmaPos = CameraMiniMapa.unproject_position(fantasma.get_transform().origin)
-	var metaPos = CameraMiniMapa.unproject_position(meta.get_transform().origin)
-	var parcial1Pos = CameraMiniMapa.unproject_position(parcial1.get_transform().origin)
-	var parcial2Pos = CameraMiniMapa.unproject_position(parcial2.get_transform().origin)
-	var parcial3Pos = CameraMiniMapa.unproject_position(parcial3.get_transform().origin)
-	var parcial4Pos = CameraMiniMapa.unproject_position(parcial4.get_transform().origin)
-	var parcial5Pos = CameraMiniMapa.unproject_position(parcial5.get_transform().origin)
-	var parcial6Pos = CameraMiniMapa.unproject_position(parcial6.get_transform().origin)
-	var parcial7Pos = CameraMiniMapa.unproject_position(parcial7.get_transform().origin)
-	var parcial8Pos = CameraMiniMapa.unproject_position(parcial8.get_transform().origin)
-	var parcial9Pos = CameraMiniMapa.unproject_position(parcial9.get_transform().origin)
-	var parcial10Pos = CameraMiniMapa.unproject_position(parcial10.get_transform().origin)
-	
-	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
-#	print (str(fantasma) + str(fantasma.get_tree()) + str(fantasma.get_filename())) 
-	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_pos(cochePos)
-	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
-	pass
 
 func tiempo_vueltas():
 	var tiempoveltas

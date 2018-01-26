@@ -11,12 +11,7 @@
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+animations = [ { "frames":[ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"default", "speed":5.0 } ]
 
 [node name="HUDpista" type="Control"]
 
@@ -57,8 +52,7 @@ margin/left = 192.0
 margin/top = 150.0
 margin/right = 232.0
 margin/bottom = 181.0
-text = "3
-"
+text = "3\n"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -74,8 +68,7 @@ margin/left = 235.0
 margin/top = 650.0
 margin/right = 275.0
 margin/bottom = 681.0
-text = "3
-"
+text = "3\n"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -151,8 +144,100 @@ texture = ExtResource( 3 )
 
 [node name="metaVolante" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
 
+visibility/visible = false
+transform/pos = Vector2( -20, 20 )
+transform/scale = Vector2( 0.03, 0.03 )
 frames = SubResource( 1 )
-animation = "posicionMeta"
+animation = "default"
+frame = 3
+playing = true
+
+[node name="metaVolante1" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 3
+playing = true
+
+[node name="metaVolante2" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 2
+playing = true
+
+[node name="metaVolante3" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 2
+playing = true
+
+[node name="metaVolante4" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 1
+playing = true
+
+[node name="metaVolante5" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 1
+playing = true
+
+[node name="metaVolante6" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+playing = true
+
+[node name="metaVolante7" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+playing = true
+
+[node name="metaVolante8" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 4
+playing = true
+
+[node name="metaVolante9" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 3
+playing = true
+
+[node name="metaVolante10" type="AnimatedSprite" parent="MiniMapa/Viewport/CameraMiniMapa"]
+
+visibility/visible = false
+transform/scale = Vector2( 0.03, 0.03 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 3
 playing = true
 
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
