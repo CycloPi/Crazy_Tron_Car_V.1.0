@@ -107,6 +107,7 @@ _update_shape_index = 0
 
 [node name="metaVolante" parent="meta" instance=ExtResource( 2 )]
 
+editor/display_folded = true
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.52862, 0 )
 
 [node name="Cylinder" parent="meta/metaVolante"]
@@ -117,7 +118,7 @@ material/0 = SubResource( 2 )
 
 editor/display_folded = true
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 25.7906 )
+transform/local = Transform( 1.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56578, 4.65015 )
 input/ray_pickable = false
 input/capture_on_drag = false
 shape_count = 1
@@ -144,10 +145,6 @@ transform/local = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 3.0104, 0 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
-
-[node name="metaVolante" parent="parcial1" instance=ExtResource( 2 )]
-
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.96588, 0.0435638 )
 
 [node name="parcial2" type="Area" parent="."]
 
