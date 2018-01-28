@@ -19,9 +19,16 @@ var diccionarioPaGuardar = {"partida": diccionarioPartida, "tiempos":diccionario
 onready var imprimeInfo = get_node("Ultima")
 onready var imprimePartidaActual = get_node("info")
 
+# var para marcador de tiempos:
+var BanderaMarcador = false
+var preEsceMarcador = preload("res://Pistas/HUD/MarcadorRetro/MarcadoRetroEscena.tscn")
+var MarcadoTiempo
+
+var InicioTempo3s = 0
 
 
-#variables para relog
+
+#variables para relog 
 #onready var imprimeTiempo = get_node("SpriteTiempo/Tiempo")
 var tiempoInicio = 0
 var banderaInicioT = false
@@ -135,7 +142,6 @@ func _fixed_process(delta):
 	cuentaAtras()
 	tiempo_vueltas()
 	posicion_miniMapa()
-	
 	#funcion en pruebas:
 	# No no no funciona el contador de vueltas del fantasma
 	# solo marca la primera: 
@@ -144,8 +150,12 @@ func _fixed_process(delta):
 	#
 	# Solo cuenta una vez , No entra en el area lo he emirado
 	# grabar tiempo
-	
 	grabarTiempos()
+	
+	if segundosT - InicioTempo3s == 4 and BanderaMarcador :
+		MarcadoTiempo.free()
+		BanderaMarcador = false
+		print("ahora")
 	
 	if fantasmika.vueltas > vueltas:
 		tiempoVuelta = segundosT
@@ -193,6 +203,18 @@ func salidaFuerza():
 	if segundosT == 3:
 		coche.engine_force = 100
 		banderaEnCarrera = true
+		
+		
+		# funcion para sacar el marcador
+		if BanderaMarcador == false:
+			print("saca el cartel último tiempo")
+			MarcadoTiempo = preEsceMarcador.instance()
+			get_parent().add_child(MarcadoTiempo)
+			MarcadoTiempo.set_pos(Vector2(0,200))
+			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
+			BanderaMarcador = true
+			InicioTempo3s = segundosT
+			
 	if segundosT < 3 and banderaEnCarrera == false:
 		coche.engine_force = 0
 		
