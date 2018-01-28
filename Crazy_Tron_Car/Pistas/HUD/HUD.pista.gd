@@ -80,6 +80,7 @@ func posicion_miniMapa():
 	var CameraMiniMapa = get_node("MiniMapa/Viewport/CameraMiniMapa")
 	var cochePos = CameraMiniMapa.unproject_position(coche.get_transform().origin)
 	var fantasmaPos = CameraMiniMapa.unproject_position(fantasma.get_transform().origin)
+	var cocheRot = coche.get_rotation_deg().y
 	
 	var metaPos = CameraMiniMapa.unproject_position(meta.get_transform().origin)
 	var parcial1Pos = CameraMiniMapa.unproject_position(parcial1.get_transform().origin)
@@ -97,8 +98,9 @@ func posicion_miniMapa():
 	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
 #	print (str(fantasma) + str(fantasma.get_tree()) + str(fantasma.get_filename())) 
 	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_pos(cochePos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_rotd(cocheRot)
 	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
-
+	print (cocheRot)
 	parcial1Volante.set_pos(parcial1Pos)
 	parcial2Volante.set_pos(parcial2Pos)
 	parcial3Volante.set_pos(parcial3Pos)
