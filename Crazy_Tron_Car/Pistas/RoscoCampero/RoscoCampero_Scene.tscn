@@ -59,19 +59,17 @@ _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="fantasma" parent="PosicionSalida" instance=ExtResource( 1 )]
 
-editor/display_folded = true
-
 [node name="meta" parent="PosicionSalida/fantasma"]
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46402, 2.30386, 0 )
 
 [node name="parcial1" parent="PosicionSalida/fantasma"]
 
-transform/local = Transform( 0.689568, 0, 0.724221, 0, 1, 0, -0.724221, 0, 0.689568, 4.99044, 1.56578, 8.73758 )
+transform/local = Transform( 0.999925, 0, 0.0122105, 0, 1, 0, -0.0122105, 0, 0.999925, -1.67956, 1.56578, 2.95984 )
 
 [node name="parcial2" parent="PosicionSalida/fantasma"]
 
-transform/local = Transform( 0.30636, 0, 0.951916, 0, 1, 0, -0.951916, 0, 0.30636, 12.942, 1.56578, 18.0254 )
+transform/local = Transform( 0.503022, 0, 0.864274, 0, 1, 0, -0.864274, 0, 0.503022, 7.79251, 1.56578, 13.711 )
 
 [node name="parcial3" parent="PosicionSalida/fantasma"]
 
@@ -155,9 +153,55 @@ params/attenuation = 1.0
 
 [node name="Control" parent="." instance=ExtResource( 3 )]
 
+editor/display_folded = true
+
 [node name="CameraMiniMapa" parent="Control/MiniMapa/Viewport"]
 
 transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 66.5428, 0 )
+
+[node name="metaVolante" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante1" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante2" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 4
+
+[node name="metaVolante3" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 4
+
+[node name="metaVolante4" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 3
+
+[node name="metaVolante5" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 3
+
+[node name="metaVolante6" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 2
+
+[node name="metaVolante7" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 2
+
+[node name="metaVolante8" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 1
+
+[node name="metaVolante9" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante10" parent="Control/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
@@ -173,6 +217,30 @@ _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0 )
 
 [node name="HUDpista" parent="." instance=ExtResource( 3 )]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/meta" to="PosicionSalida/fantasma" method="_on_meta_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial1" to="PosicionSalida/fantasma" method="_on_parcial1_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial2" to="PosicionSalida/fantasma" method="_on_parcial2_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_parcial3_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial4" to="PosicionSalida/fantasma" method="_on_parcial4_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial5" to="PosicionSalida/fantasma" method="_on_parcial5_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial6" to="PosicionSalida/fantasma" method="_on_parcial6_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial7" to="PosicionSalida/fantasma" method="_on_parcial7_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial8" to="PosicionSalida/fantasma" method="_on_parcial8_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial9" to="PosicionSalida/fantasma" method="_on_parcial9_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial10" to="PosicionSalida/fantasma" method="_on_parcial10_body_enter"]
+
+[connection signal="pressed" from="Control/Back" to="Control" method="_on_Back_pressed"]
 
 
 [editable path="PosicionSalida/fantasma"]
