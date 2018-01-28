@@ -157,14 +157,6 @@ func _fixed_process(delta):
 		BanderaMarcador = false
 		print("ahora")
 	
-	if fantasmika.vueltas > vueltas:
-		tiempoVuelta = segundosT
-		vueltas += 1
-		diccionarioTiempos.Tvuela = tiempoVuelta
-		diccionarioPaGuardar.tiempos = diccionarioTiempos
-		guardarJuego(diccionarioPaGuardar)
-		print("meto paso por meta, tiempo de vuelta: " + str(tiempoVuelta) +" segundos." )
-	
 	pass
 	
 	
@@ -211,10 +203,20 @@ func salidaFuerza():
 			MarcadoTiempo = preEsceMarcador.instance()
 			get_parent().add_child(MarcadoTiempo)
 			MarcadoTiempo.set_pos(Vector2(0,200))
-			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
 			BanderaMarcador = true
 			InicioTempo3s = segundosT
+			print(diccionarioUltimosTiempos)
+			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos)+" s")
+#			MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
 			
+			
+			if not archivoLeer.file_exists(direccionArchivo):
+				MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
+#				imprimeInfo.set_text("Bienvenido" )
+
+#			else:
+#				MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
+	
 	if segundosT < 3 and banderaEnCarrera == false:
 		coche.engine_force = 0
 		
