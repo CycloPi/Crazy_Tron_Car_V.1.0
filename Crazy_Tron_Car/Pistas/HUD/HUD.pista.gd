@@ -19,9 +19,16 @@ var diccionarioPaGuardar = {"partida": diccionarioPartida, "tiempos":diccionario
 onready var imprimeInfo = get_node("Ultima")
 onready var imprimePartidaActual = get_node("info")
 
+# var para marcador de tiempos:
+var BanderaMarcador = false
+var preEsceMarcador = preload("res://Pistas/HUD/MarcadorRetro/MarcadoRetroEscena.tscn")
+var MarcadoTiempo
+
+var InicioTempo3s = 0
 
 
-#variables para relog
+
+#variables para relog 
 #onready var imprimeTiempo = get_node("SpriteTiempo/Tiempo")
 var tiempoInicio = 0
 var banderaInicioT = false
@@ -73,6 +80,7 @@ func posicion_miniMapa():
 	var CameraMiniMapa = get_node("MiniMapa/Viewport/CameraMiniMapa")
 	var cochePos = CameraMiniMapa.unproject_position(coche.get_transform().origin)
 	var fantasmaPos = CameraMiniMapa.unproject_position(fantasma.get_transform().origin)
+	var cocheRot = coche.get_rotation_deg().y
 	
 	var metaPos = CameraMiniMapa.unproject_position(meta.get_transform().origin)
 	var parcial1Pos = CameraMiniMapa.unproject_position(parcial1.get_transform().origin)
@@ -90,8 +98,9 @@ func posicion_miniMapa():
 	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
 #	print (str(fantasma) + str(fantasma.get_tree()) + str(fantasma.get_filename())) 
 	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_pos(cochePos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_rotd(cocheRot)
 	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
-
+	print (cocheRot)
 	parcial1Volante.set_pos(parcial1Pos)
 	parcial2Volante.set_pos(parcial2Pos)
 	parcial3Volante.set_pos(parcial3Pos)
@@ -135,7 +144,6 @@ func _fixed_process(delta):
 	cuentaAtras()
 	tiempo_vueltas()
 	posicion_miniMapa()
-	
 	#funcion en pruebas:
 	# No no no funciona el contador de vueltas del fantasma
 	# solo marca la primera: 
@@ -144,16 +152,12 @@ func _fixed_process(delta):
 	#
 	# Solo cuenta una vez , No entra en el area lo he emirado
 	# grabar tiempo
-	
 	grabarTiempos()
 	
-	if fantasmika.vueltas > vueltas:
-		tiempoVuelta = segundosT
-		vueltas += 1
-		diccionarioTiempos.Tvuela = tiempoVuelta
-		diccionarioPaGuardar.tiempos = diccionarioTiempos
-		guardarJuego(diccionarioPaGuardar)
-		print("meto paso por meta, tiempo de vuelta: " + str(tiempoVuelta) +" segundos." )
+	if segundosT - InicioTempo3s == 4 and BanderaMarcador :
+		MarcadoTiempo.free()
+		BanderaMarcador = false
+		print("ahora")
 	
 	pass
 	
@@ -193,6 +197,28 @@ func salidaFuerza():
 	if segundosT == 3:
 		coche.engine_force = 100
 		banderaEnCarrera = true
+		
+		
+		# funcion para sacar el marcador
+		if BanderaMarcador == false:
+			print("saca el cartel último tiempo")
+			MarcadoTiempo = preEsceMarcador.instance()
+			get_parent().add_child(MarcadoTiempo)
+			MarcadoTiempo.set_pos(Vector2(0,200))
+			BanderaMarcador = true
+			InicioTempo3s = segundosT
+			print(diccionarioUltimosTiempos)
+			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos)+" s")
+#			MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
+			
+			
+			if not archivoLeer.file_exists(direccionArchivo):
+				MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
+#				imprimeInfo.set_text("Bienvenido" )
+
+#			else:
+#				MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
+	
 	if segundosT < 3 and banderaEnCarrera == false:
 		coche.engine_force = 0
 		
