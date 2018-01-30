@@ -150,7 +150,7 @@ transform/local = Transform( 1.67586, 0, 0, 0, 1.67586, 0, 0, 0, 1.67586, 0, 2.3
 
 [node name="parcial1" parent="PosicionSalida/fantasma"]
 
-transform/local = Transform( -0.991855, 0, 0.127376, 0, 1, 0, -0.127376, 0, -0.991855, -0.908983, 1.56578, 76.6149 )
+transform/local = Transform( -0.999754, 0, -0.0221889, 0, 1, 0, 0.0221889, 0, -0.999754, -0.469461, 1.56578, 5.41032 )
 
 [node name="parcial2" parent="PosicionSalida/fantasma"]
 
@@ -202,6 +202,50 @@ editor/display_folded = true
 transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 48.8765, 178.928, 56.469 )
 far = 1000.0
 
+[node name="metaVolante" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante1" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante2" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 4
+
+[node name="metaVolante3" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 4
+
+[node name="metaVolante4" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 3
+
+[node name="metaVolante5" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 3
+
+[node name="metaVolante6" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 2
+
+[node name="metaVolante7" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 2
+
+[node name="metaVolante8" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 1
+
+[node name="metaVolante9" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante10" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
 [connection signal="body_enter" from="PosicionSalida/fantasma/meta" to="PosicionSalida/fantasma" method="_on_meta_body_enter"]
 
 [connection signal="body_enter" from="PosicionSalida/fantasma/parcial1" to="PosicionSalida/fantasma" method="_on_meta1_body_enter"]
@@ -210,9 +254,9 @@ far = 1000.0
 
 [connection signal="body_enter" from="PosicionSalida/fantasma/parcial2" to="PosicionSalida/fantasma" method="_on_parcial2_body_enter"]
 
-[connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_parcial3_body_enter"]
-
 [connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_meta2_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_parcial3_body_enter"]
 
 [connection signal="body_enter" from="PosicionSalida/fantasma/parcial4" to="PosicionSalida/fantasma" method="_on_parcial4_body_enter"]
 
