@@ -208,13 +208,9 @@ func salidaFuerza():
 			BanderaMarcador = true
 			InicioTempo3s = segundosT
 			print(diccionarioUltimosTiempos)
-			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos)+" s")
+			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
 #			MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
 			
-			
-			if not archivoLeer.file_exists(direccionArchivo):
-				MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
-#				imprimeInfo.set_text("Bienvenido" )
 
 #			else:
 #				MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
@@ -281,4 +277,11 @@ func grabarTiempos():
 		diccionarioPaGuardar.tiempos = diccionarioTiempos
 		guardarJuego(diccionarioPaGuardar)
 		print("meto paso por meta, tiempo de vuelta: " + str(tiempoVuelta) +" segundos." )
-	
+		if BanderaMarcador == false:
+			print("saca el cartel último tiempo")
+			MarcadoTiempo = preEsceMarcador.instance()
+			get_parent().add_child(MarcadoTiempo)
+			MarcadoTiempo.set_pos(Vector2(0,200))
+			BanderaMarcador = true
+			InicioTempo3s = segundosT
+			MarcadoTiempo.get_node("Informacion").set_text("TV: "+str(tiempoVuelta)+" s")
