@@ -80,8 +80,12 @@ func posicion_miniMapa():
 	var CameraMiniMapa = get_node("MiniMapa/Viewport/CameraMiniMapa")
 	var cochePos = CameraMiniMapa.unproject_position(coche.get_transform().origin)
 	var fantasmaPos = CameraMiniMapa.unproject_position(fantasma.get_transform().origin)
-	var cocheRot = coche.get_rotation_deg().y
-	
+	var cocheRoty = coche.get_rotation_deg().y
+#	print ("Rot Y: " + str(cocheRoty))
+	var cocheRotx = coche.get_rotation_deg().x
+#	print ("Rot X: " + str(cocheRotx))
+	var cocheRotz = coche.get_rotation_deg().z
+#	print ("Rot Z: " + str(cocheRotz))
 	var metaPos = CameraMiniMapa.unproject_position(meta.get_transform().origin)
 	var parcial1Pos = CameraMiniMapa.unproject_position(parcial1.get_transform().origin)
 	var parcial2Pos = CameraMiniMapa.unproject_position(parcial2.get_transform().origin)
@@ -94,13 +98,16 @@ func posicion_miniMapa():
 	var parcial9Pos = CameraMiniMapa.unproject_position(parcial9.get_transform().origin)
 	var parcial10Pos = CameraMiniMapa.unproject_position(parcial10.get_transform().origin)
 
-	
+	if cocheRotx > -99:
+		get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_rotd(cocheRoty + 180)
+	else:
+				get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_rotd(-cocheRoty)
 	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
 #	print (str(fantasma) + str(fantasma.get_tree()) + str(fantasma.get_filename())) 
 	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_pos(cochePos)
-	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_rotd(cocheRot)
+	
 	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
-#	print (cocheRot)
+
 	parcial1Volante.set_pos(Vector2(-20,-20))
 	parcial2Volante.set_pos(parcial2Pos)
 	parcial3Volante.set_pos(parcial3Pos)
@@ -208,9 +215,13 @@ func salidaFuerza():
 			BanderaMarcador = true
 			InicioTempo3s = segundosT
 			print(diccionarioUltimosTiempos)
-			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
+			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos)+" s")
 #			MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
 			
+			
+			if not archivoLeer.file_exists(direccionArchivo):
+				MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
+#				imprimeInfo.set_text("Bienvenido" )
 
 #			else:
 #				MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
@@ -277,11 +288,4 @@ func grabarTiempos():
 		diccionarioPaGuardar.tiempos = diccionarioTiempos
 		guardarJuego(diccionarioPaGuardar)
 		print("meto paso por meta, tiempo de vuelta: " + str(tiempoVuelta) +" segundos." )
-		if BanderaMarcador == false:
-			print("saca el cartel último tiempo")
-			MarcadoTiempo = preEsceMarcador.instance()
-			get_parent().add_child(MarcadoTiempo)
-			MarcadoTiempo.set_pos(Vector2(0,200))
-			BanderaMarcador = true
-			InicioTempo3s = segundosT
-			MarcadoTiempo.get_node("Informacion").set_text("TV: "+str(tiempoVuelta)+" s")
+	
