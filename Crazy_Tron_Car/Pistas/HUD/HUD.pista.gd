@@ -161,10 +161,11 @@ func _fixed_process(delta):
 	# grabar tiempo
 	grabarTiempos()
 	
+	# funcion salir de temporzador y matar el marcador
 	if segundosT - InicioTempo3s == 4 and BanderaMarcador :
 		MarcadoTiempo.free()
 		BanderaMarcador = false
-		print("ahora")
+		print("ahora han pasado 4 segundos")
 	
 	pass
 	
@@ -215,7 +216,7 @@ func salidaFuerza():
 			BanderaMarcador = true
 			InicioTempo3s = segundosT
 			print(diccionarioUltimosTiempos)
-			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos)+" s")
+			MarcadoTiempo.get_node("Informacion").set_text("ÚT: "+str(diccionarioUltimosTiempos.Tvuela)+" s")
 #			MarcadoTiempo.get_node("Informacion").set_text("Wellcome")
 			
 			
@@ -288,4 +289,14 @@ func grabarTiempos():
 		diccionarioPaGuardar.tiempos = diccionarioTiempos
 		guardarJuego(diccionarioPaGuardar)
 		print("meto paso por meta, tiempo de vuelta: " + str(tiempoVuelta) +" segundos." )
+		if BanderaMarcador == false:
+			print("saca el cartel último tiempo")
+			MarcadoTiempo = preEsceMarcador.instance()
+			get_parent().add_child(MarcadoTiempo)
+			MarcadoTiempo.set_pos(Vector2(0,200))
+			BanderaMarcador = true
+			InicioTempo3s = segundosT
+			MarcadoTiempo.get_node("Informacion").set_text("TV: "+str(tiempoVuelta)+" s")
+	
+	
 	
