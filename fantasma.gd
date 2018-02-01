@@ -3,8 +3,10 @@ extends Spatial
 onready var tiempo 
 var numero_frame = 0
 ### detecto pista ####
-onready var circuito = get_tree().get_root().get_node("/root/carrera/HUDpista")
+#onready var circuito = get_tree().get_root().get_node("/root/carrera/HUDpista")
+onready var circuito = Global.pista
 
+#onready var circuito = HUB.circuitoSeleccionado
 onready var  meta = get_node("meta")
 onready var  parcial1 = get_node("parcial1")
 onready var  parcial2 = get_node("parcial2")
@@ -48,51 +50,55 @@ var origen_coche_1 = []
 var origen_coche_2 = []
 
 ### posiciones circuito####
+var fantasma_dic = {}
 
-
-var posicion_fantasma_circuito_x_0= []
-var posicion_fantasma_circuito_x_1= []
-var	posicion_fantasma_circuito_x_2= []
+var posicion_fantasma_circuito_x_0 = []
+var posicion_fantasma_circuito_x_1 = []
+var	posicion_fantasma_circuito_x_2 = []
 #
-var	posicion_fantasma_circuito_y_0= []
-var posicion_fantasma_circuito_y_1= []
-var	posicion_fantasma_circuito_y_2= []
+var	posicion_fantasma_circuito_y_0 = []
+var posicion_fantasma_circuito_y_1 = []
+var	posicion_fantasma_circuito_y_2 = []
 	
-var	posicion_fantasma_circuito_z_0= []
-var	posicion_fantasma_circuito_z_1= []
-var	posicion_fantasma_circuito_z_2= []
+var	posicion_fantasma_circuito_z_0 = []
+var	posicion_fantasma_circuito_z_1 = []
+var	posicion_fantasma_circuito_z_2 = []
 	
-var	origen_fantasma_circuito_0= []
-var	origen_fantasma_circuito_1= []
-var	origen_fantasma_circuito_2= []
+var	origen_fantasma_circuito_0 = []
+var	origen_fantasma_circuito_1 = []
+var	origen_fantasma_circuito_2 = []
 
-
+	
 ## para que se mueva el cubo y no el nodo principal ###
 onready var fantasma_body = get_node("fantasma")
 
 
 
 var direccion = "res://fantasma.json"
+
 func save_game():	
 	
-	var salvar = {
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_x_0":posicion_fantasma_circuito_x_0,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_x_1":posicion_fantasma_circuito_x_1,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_x_2":posicion_fantasma_circuito_x_2,
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_x_0"] = posicion_fantasma_circuito_x_0
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_x_1"] = posicion_fantasma_circuito_x_1
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_x_2"] = posicion_fantasma_circuito_x_2
 	
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_y_0":posicion_fantasma_circuito_y_0,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_y_1":posicion_fantasma_circuito_y_1,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_y_2":posicion_fantasma_circuito_y_2,
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_y_0"] = posicion_fantasma_circuito_y_0
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_y_1"] = posicion_fantasma_circuito_y_1
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_y_2"] = posicion_fantasma_circuito_y_2
 	
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_z_0":posicion_fantasma_circuito_z_0,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_z_1":posicion_fantasma_circuito_z_1,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_z_2":posicion_fantasma_circuito_z_2,
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_z_0"] = posicion_fantasma_circuito_z_0
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_z_1"] = posicion_fantasma_circuito_z_1
+	fantasma_dic["posicion_fantasma_"+str(circuito)+"_z_2"] = posicion_fantasma_circuito_z_2
 	
-	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_0": origen_fantasma_circuito_0,
-	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_1": origen_fantasma_circuito_1,
-	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_2": origen_fantasma_circuito_2
+	fantasma_dic["origen_fantasma_"+str(circuito)+"_0"] = origen_fantasma_circuito_0
+	fantasma_dic["origen_fantasma_"+str(circuito)+"_1"] = origen_fantasma_circuito_1
+	fantasma_dic["origen_fantasma_"+str(circuito)+"_2"] = origen_fantasma_circuito_2
 	
-	}
+	var salvar = {"fantasma_dic":fantasma_dic}
+	
+
+#	
+	
 	
 	var file = File.new()
 	file.open(direccion, file.WRITE)
@@ -109,25 +115,27 @@ func load_game():
 	var data = {}
 	data.parse_json(file.get_as_text())
 	
-	if circuito.circuitoSeleccionado == "terreno":
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_terreno_x_0
-		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_terreno_x_1
-		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_terreno_x_2
+	if circuito == "terreno" and data.fantasma_dic.has("posicion_fantasma_terreno_x_0"):
+#		print("cargo el terreno : ",)
+		posicion_fantasma_circuito_x_0 = data.fantasma_dic.posicion_fantasma_terreno_x_0
+		posicion_fantasma_circuito_x_1 = data.fantasma_dic.posicion_fantasma_terreno_x_1
+		posicion_fantasma_circuito_x_2 = data.fantasma_dic.posicion_fantasma_terreno_x_2
 	
-		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_terreno_y_0
-		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_terreno_y_1
-		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_terreno_y_2
+		posicion_fantasma_circuito_y_0 = data.fantasma_dic.posicion_fantasma_terreno_y_0
+		posicion_fantasma_circuito_y_1 = data.fantasma_dic.posicion_fantasma_terreno_y_1
+		posicion_fantasma_circuito_y_2 = data.fantasma_dic.posicion_fantasma_terreno_y_2
 	
-		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_terreno_z_0
-		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_terreno_z_1
-		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_terreno_z_2
+		posicion_fantasma_circuito_z_0 = data.fantasma_dic.posicion_fantasma_terreno_z_0
+		posicion_fantasma_circuito_z_1 = data.fantasma_dic.posicion_fantasma_terreno_z_1
+		posicion_fantasma_circuito_z_2 = data.fantasma_dic.posicion_fantasma_terreno_z_2
 
-		origen_fantasma_circuito_0 = data.origen_fantasma_terreno_0
-		origen_fantasma_circuito_1 = data.origen_fantasma_terreno_1
-		origen_fantasma_circuito_2 = data.origen_fantasma_terreno_2
+		origen_fantasma_circuito_0 = data.fantasma_dic.origen_fantasma_terreno_0
+		origen_fantasma_circuito_1 = data.fantasma_dic.origen_fantasma_terreno_1
+		origen_fantasma_circuito_2 = data.fantasma_dic.origen_fantasma_terreno_2
 	
-	if circuito.circuitoSeleccionado == "jarama_scene":
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_jarama_scene_x_1
+	if circuito == "jarama_scene" and data.has("posicion_fantasma_jarama_scene_x_0"):
+		
+		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_jarama_scene_x_0
 		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_jarama_scene_x_1
 		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_jarama_scene_x_2
 	
@@ -142,26 +150,49 @@ func load_game():
 		origen_fantasma_circuito_0 = data.origen_fantasma_jarama_scene_0
 		origen_fantasma_circuito_1 = data.origen_fantasma_jarama_scene_1
 		origen_fantasma_circuito_2 = data.origen_fantasma_jarama_scene_2
-	if circuito.circuitoSeleccionado == "RoscoCampero_scene":
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_RoscoCampero_scene_x_1
-		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_RoscoCampero_scene_x_1
-		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_RoscoCampero_scene_x_2
+#	
+	if circuito == "RoscoCampero_scene" and data.fantasma_dic.has("posicion_fantasma_RoscoCampero_scene_x_0"):
+		
+		posicion_fantasma_circuito_x_0 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_x_0
+		posicion_fantasma_circuito_x_1 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_x_1
+		posicion_fantasma_circuito_x_2 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_x_2
 	
-		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_RoscoCampero_scene_y_0
-		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_RoscoCampero_scene_y_1
-		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_RoscoCampero_scene_y_2
+		posicion_fantasma_circuito_y_0 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_y_0
+		posicion_fantasma_circuito_y_1 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_y_1
+		posicion_fantasma_circuito_y_2 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_y_2
 	
-		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_RoscoCampero_scene_z_0
-		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_RoscoCampero_scene_z_1
-		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_RoscoCampero_scene_z_2
+		posicion_fantasma_circuito_z_0 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_z_0
+		posicion_fantasma_circuito_z_1 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_z_1
+		posicion_fantasma_circuito_z_2 = data.fantasma_dic.posicion_fantasma_RoscoCampero_scene_z_2
 
-		origen_fantasma_circuito_0 = data.origen_fantasma_RoscoCampero_scene_0
-		origen_fantasma_circuito_1 = data.origen_fantasma_RoscoCampero_scene_1
-		origen_fantasma_circuito_2 = data.origen_fantasma_RoscoCampero_scene_2
+		origen_fantasma_circuito_0 = data.fantasma_dic.origen_fantasma_RoscoCampero_scene_0
+		origen_fantasma_circuito_1 = data.fantasma_dic.origen_fantasma_RoscoCampero_scene_1
+		origen_fantasma_circuito_2 = data.fantasma_dic.origen_fantasma_RoscoCampero_scene_2
+	
+	if circuito == "town_scene" and data.has("posicion_fantasma_town_scene_x_0"):
+		
+		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_town_scene_x_0
+		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_town_scene_x_1
+		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_town_scene_x_2
+	
+		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_town_scene_y_0
+		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_town_scene_y_1
+		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_town_scene_y_2
+	
+		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_town_scene_z_0
+		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_town_scene_z_1
+		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_town_scene_z_2
+
+		origen_fantasma_circuito_0 = data.origen_fantasma_town_scene_0
+		origen_fantasma_circuito_1 = data.origen_fantasma_town_scene_1
+		origen_fantasma_circuito_2 = data.origen_fantasma_town_scene_2
+	else:
+		pass
 
 func _ready():
 	
-	print (circuito)
+	print ("circuito :",circuito)
+	
 	load_game()
 	#### #### escone la meta del coche, esconde la leyermask (.hide no sive) ####
 	meta.set_layer_mask_bit(0,false)

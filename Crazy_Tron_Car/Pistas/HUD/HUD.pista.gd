@@ -5,10 +5,11 @@ var direccionArchivo = "res://infojugador.json"
 var circuitoSeleccionado
 
 var archivoLeer 
-
+#variables para las vueltas
+var tiempoVuelta = 0
 var cocheSeleccionado
 var fechaPartida
-var diccionarioPartida = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida}
+var diccionarioPartida = {"coche": cocheSeleccionado,"circuito": circuitoSeleccionado,"fecha": fechaPartida,"tiempoVuelta": tiempoVuelta}
 var diccionarioPaGuardar = {"key1": diccionarioPartida}
 
 
@@ -28,7 +29,6 @@ var banderaInicioT = false
 var segundosT = 0
 var vueltas = 0 
 
-
 #variables para boqueo Salida
 onready var coche = Global.coche.get_node("BODY")
 onready var fuerzaMotor = coche.engine_force
@@ -40,6 +40,18 @@ onready var cuentaAtras = get_node("cuentaAtras")
 #onready var posicionCoche = get_node("MiniMapa/Viewport/CameraMiniMapa/posicionCoche")
 #onready var cocheMiniMapa = get_tree().get_root().get_node("/root/carrera/PosicionSalida/car")
 onready var fantasma = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/fantasma")
+onready var fantasmika = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma")
+onready var meta = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/meta/metaVolante")
+onready var parcial1 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial1/posMetaVolante")
+onready var parcial2 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial2/posMetaVolante")
+onready var parcial3 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial3/posMetaVolante")
+onready var parcial4 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial4/posMetaVolante")
+onready var parcial5 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial5/posMetaVolante")
+onready var parcial6 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial6/posMetaVolante")
+onready var parcial7 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial7/posMetaVolante")
+onready var parcial8 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial8/posMetaVolante")
+onready var parcial9 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial9/posMetaVolante")
+onready var parcial10 = get_tree().get_root().get_node("/root/carrera/PosicionSalida/fantasma/parcial10/posMetaVolante")
 
 
 
@@ -50,6 +62,7 @@ func _ready():
 	leerJuego()
 	datosPartida()
 	guardarJuego(diccionarioPaGuardar)
+	print(parcial1)
 	pass
 	
 func _fixed_process(delta):
@@ -58,6 +71,11 @@ func _fixed_process(delta):
 	cuentaAtras()
 	tiempo_vueltas()
 	posicion_miniMapa()
+	
+	if fantasmika.vueltas > vueltas:
+		vueltas += 1
+		print("meto paso por meta")
+	
 	pass
 	
 	
@@ -68,10 +86,35 @@ func posicion_miniMapa():
 	var CameraMiniMapa = get_node("MiniMapa/Viewport/CameraMiniMapa")
 	var cochePos = CameraMiniMapa.unproject_position(coche.get_transform().origin)
 	var fantasmaPos = CameraMiniMapa.unproject_position(fantasma.get_transform().origin)
-	#print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(coche.get_transform().origin))
-#	print (str(fantasma) + str(fantasma.get_tree()) + str(fantasma.get_filename())) 
+	
+	var metaPos = CameraMiniMapa.unproject_position(meta.get_transform().origin)
+	var parcial1Pos = CameraMiniMapa.unproject_position(parcial1.get_transform().origin)
+	var parcial2Pos = CameraMiniMapa.unproject_position(parcial2.get_transform().origin)
+	var parcial3Pos = CameraMiniMapa.unproject_position(parcial3.get_transform().origin)
+	var parcial4Pos = CameraMiniMapa.unproject_position(parcial4.get_transform().origin)
+	var parcial5Pos = CameraMiniMapa.unproject_position(parcial5.get_transform().origin)
+	var parcial6Pos = CameraMiniMapa.unproject_position(parcial6.get_transform().origin)
+	var parcial7Pos = CameraMiniMapa.unproject_position(parcial7.get_transform().origin)
+	var parcial8Pos = CameraMiniMapa.unproject_position(parcial8.get_transform().origin)
+	var parcial9Pos = CameraMiniMapa.unproject_position(parcial9.get_transform().origin)
+	var parcial10Pos = CameraMiniMapa.unproject_position(parcial10.get_transform().origin)
+	
+	print (get_node("MiniMapa/Viewport/CameraMiniMapa").unproject_position(parcial1.get_transform().origin))
+	print (str(parcial1) + str(parcial1.get_tree()) + str(parcial1.get_filename())) 
 	get_node("MiniMapa/Viewport/CameraMiniMapa/coche").set_pos(cochePos)
 	get_node("MiniMapa/Viewport/CameraMiniMapa/fantasma").set_pos(fantasmaPos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(metaPos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial1Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial2Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial3Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial4Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial5Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial6Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial7Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial8Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial9Pos)
+	get_node("MiniMapa/Viewport/CameraMiniMapa/metaVolante").set_pos(parcial10Pos)
+	
 	pass
 
 func tiempo_vueltas():
@@ -116,14 +159,6 @@ func salidaFuerza():
 #		banderaEnCarrera = true
 #		print(coche.engine_force)
 
-
-func _on_Area_body_enter( body ):
-	vueltas += 1
-#	print ("vueltas: " + str(vueltas) )
-	
-	pass
-
-
 func _on_Back_pressed():
 	
 	get_tree().get_root().get_node("carrera").queue_free()
@@ -160,7 +195,7 @@ func datosPartida():	# leer datos actuales de partida
 	if not archivoLeer.file_exists(direccionArchivo):
 		imprimeInfo.set_text("Bienvenido" )
 	else:
-		imprimeInfo.set_text("Partida anterior " + str(diccionarioUltimaPartida.fecha.day) + "-" + str(diccionarioUltimaPartida.fecha.month)+"-"+ str(diccionarioUltimaPartida.fecha.year)+ " Circuito: " + str(diccionarioUltimaPartida.circuito) + " Coche: " + str(diccionarioUltimaPartida.coche))
+		imprimeInfo.set_text("Partida anterior " + str(diccionarioUltimaPartida.fecha.day) + "-" + str(diccionarioUltimaPartida.fecha.month)+"-"+ str(diccionarioUltimaPartida.fecha.year)+ " Circuito: " + str(diccionarioUltimaPartida.circuito) + " Coche: " + str(diccionarioUltimaPartida.coche)+" tiempo: ")
 	
 	imprimePartidaActual.set_text("Partida actual " + str(diccionarioPartida.fecha.day)+ "-" + str(diccionarioPartida.fecha.month)+"-"+ str(diccionarioPartida.fecha.year)+ " Circuito: " + str(diccionarioPartida.circuito) + " Coche: " + str(diccionarioPartida.coche))
 	
