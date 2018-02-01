@@ -3,8 +3,10 @@ extends Spatial
 onready var tiempo 
 var numero_frame = 0
 ### detecto pista ####
-onready var circuito = get_tree().get_root().get_node("/root/carrera/HUDpista")
+#onready var circuito = get_tree().get_root().get_node("/root/carrera/HUDpista")
+onready var circuito = Global.pista
 
+#onready var circuito = HUB.circuitoSeleccionado
 onready var  meta = get_node("meta")
 onready var  parcial1 = get_node("parcial1")
 onready var  parcial2 = get_node("parcial2")
@@ -31,6 +33,8 @@ onready var  metaVolanteParcial10 = get_node("parcial10/metaVolante")
 var vueltas = 0
 
 ############ posiciones coche ###########################################
+
+
 var	posicion_coche_x_0 = []
 var	posicion_coche_x_1 = []
 var	posicion_coche_x_2 = []
@@ -47,60 +51,159 @@ var origen_coche_0 = []
 var origen_coche_1 = []
 var origen_coche_2 = []
 
-### posiciones circuito####
 
-
-var posicion_fantasma_circuito_x_0= []
-var posicion_fantasma_circuito_x_1= []
-var	posicion_fantasma_circuito_x_2= []
-#
-var	posicion_fantasma_circuito_y_0= []
-var posicion_fantasma_circuito_y_1= []
-var	posicion_fantasma_circuito_y_2= []
+var posicion_fantasma_terreno_x_0 = []
+var posicion_fantasma_terreno_x_1 = []
+var posicion_fantasma_terreno_x_2 = []
 	
-var	posicion_fantasma_circuito_z_0= []
-var	posicion_fantasma_circuito_z_1= []
-var	posicion_fantasma_circuito_z_2= []
+var posicion_fantasma_terreno_y_0 = []
+var posicion_fantasma_terreno_y_1 = []
+var posicion_fantasma_terreno_y_2 = []
 	
-var	origen_fantasma_circuito_0= []
-var	origen_fantasma_circuito_1= []
-var	origen_fantasma_circuito_2= []
+var posicion_fantasma_terreno_z_0 = []
+var posicion_fantasma_terreno_z_1 = []
+var posicion_fantasma_terreno_z_2 = []
 
+var origen_fantasma_terreno_0 = []
+var origen_fantasma_terreno_1 = []
+var origen_fantasma_terreno_2 = []
+	
+		
+var posicion_fantasma_jarama_scene_x_0 = []
+var posicion_fantasma_jarama_scene_x_1 = []
+var posicion_fantasma_jarama_scene_x_2 = []
+	
+var posicion_fantasma_jarama_scene_y_0 = []
+var posicion_fantasma_jarama_scene_y_1 = []
+var posicion_fantasma_jarama_scene_y_2 = []
+	
+var posicion_fantasma_jarama_scene_z_0 = []
+var posicion_fantasma_jarama_scene_z_1 = []
+var posicion_fantasma_jarama_scene_z_2 = []
 
+var origen_fantasma_jarama_scene_0 = []
+var origen_fantasma_jarama_scene_1 = []
+var origen_fantasma_jarama_scene_2 = []
+	
+	
+		
+var posicion_fantasma_RoscoCampero_scene_x_0 = []
+var posicion_fantasma_RoscoCampero_scene_x_1 = []
+var posicion_fantasma_RoscoCampero_scene_x_2 = []
+	
+var	posicion_fantasma_RoscoCampero_scene_y_0 = []
+var	posicion_fantasma_RoscoCampero_scene_y_1 = []
+var	posicion_fantasma_RoscoCampero_scene_y_2 = []
+var	posicion_fantasma_RoscoCampero_scene_z_0 = []
+var	posicion_fantasma_RoscoCampero_scene_z_1 = []
+var	posicion_fantasma_RoscoCampero_scene_z_2 = []
+
+var	origen_fantasma_RoscoCampero_scene_0 = []
+var	origen_fantasma_RoscoCampero_scene_1 = []
+var	origen_fantasma_RoscoCampero_scene_2 = []
+		
+var posicion_fantasma_town_scene_x_0 = []
+var posicion_fantasma_town_scene_x_1 = []
+var posicion_fantasma_town_scene_x_2 = []
+	
+var posicion_fantasma_town_scene_y_0 = []
+var posicion_fantasma_town_scene_y_1 = []
+var posicion_fantasma_town_scene_y_2 = []
+	
+var posicion_fantasma_town_scene_z_0 = []
+var posicion_fantasma_town_scene_z_1 = []
+var posicion_fantasma_town_scene_z_2 = []
+
+var origen_fantasma_town_scene_0 = []
+var origen_fantasma_town_scene_1 = []
+var origen_fantasma_town_scene_2 = []
+
+	
 ## para que se mueva el cubo y no el nodo principal ###
 onready var fantasma_body = get_node("fantasma")
-
-
-
 var direccion = "res://fantasma.json"
-func save_game():	
+
+func salvar():
+	 
+	var dic = {
+		"posicion_fantasma_terreno_x_0" : posicion_fantasma_terreno_x_0,
+		"posicion_fantasma_terreno_x_1" : posicion_fantasma_terreno_x_1,
+		"posicion_fantasma_terreno_x_2" : posicion_fantasma_terreno_x_2,
 	
-	var salvar = {
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_x_0":posicion_fantasma_circuito_x_0,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_x_1":posicion_fantasma_circuito_x_1,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_x_2":posicion_fantasma_circuito_x_2,
+		"posicion_fantasma_terreno_y_0" : posicion_fantasma_terreno_y_0,
+		"posicion_fantasma_terreno_y_1" : posicion_fantasma_terreno_y_1,
+		"posicion_fantasma_terreno_y_2" : posicion_fantasma_terreno_y_2,
 	
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_y_0":posicion_fantasma_circuito_y_0,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_y_1":posicion_fantasma_circuito_y_1,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_y_2":posicion_fantasma_circuito_y_2,
+		"posicion_fantasma_terreno_z_0" : posicion_fantasma_terreno_z_0,
+		"posicion_fantasma_terreno_z_1" : posicion_fantasma_terreno_z_1,
+		"posicion_fantasma_terreno_z_2" : posicion_fantasma_terreno_z_2,
 	
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_z_0":posicion_fantasma_circuito_z_0,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_z_1":posicion_fantasma_circuito_z_1,
-	"posicion_fantasma_"+str(circuito.circuitoSeleccionado)+"_z_2":posicion_fantasma_circuito_z_2,
+		"origen_fantasma_terreno_0" : origen_fantasma_terreno_0,
+		"origen_fantasma_terreno_1" : origen_fantasma_terreno_1,
+		"origen_fantasma_terreno_2" : origen_fantasma_terreno_2,
+
+#######################################################################	
+		
+		"posicion_fantasma_RoscoCampero_scene_x_0" : posicion_fantasma_RoscoCampero_scene_x_0,
+		"posicion_fantasma_RoscoCampero_scene_x_1" : posicion_fantasma_RoscoCampero_scene_x_1,
+		"posicion_fantasma_RoscoCampero_scene_x_2" : posicion_fantasma_RoscoCampero_scene_x_2,
 	
-	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_0": origen_fantasma_circuito_0,
-	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_1": origen_fantasma_circuito_1,
-	"origen_fantasma_"+str(circuito.circuitoSeleccionado)+"_2": origen_fantasma_circuito_2
+		"posicion_fantasma_RoscoCampero_scene_y_0" : posicion_fantasma_RoscoCampero_scene_y_0,
+		"posicion_fantasma_RoscoCampero_scene_y_1" : posicion_fantasma_RoscoCampero_scene_y_1,
+		"posicion_fantasma_RoscoCampero_scene_y_2" : posicion_fantasma_RoscoCampero_scene_y_2,
+	
+		"posicion_fantasma_RoscoCampero_scene_z_0" : posicion_fantasma_RoscoCampero_scene_z_0,
+		"posicion_fantasma_RoscoCampero_scene_z_1" : posicion_fantasma_RoscoCampero_scene_z_1,
+		"posicion_fantasma_RoscoCampero_scene_z_2" : posicion_fantasma_RoscoCampero_scene_z_2,
+	
+		"origen_fantasma_RoscoCampero_scene_0" : origen_fantasma_RoscoCampero_scene_0,
+		"origen_fantasma_RoscoCampero_scene_1" : origen_fantasma_RoscoCampero_scene_1,
+		"origen_fantasma_RoscoCampero_scene_2" : origen_fantasma_RoscoCampero_scene_2,
+		
+		##############################
+		
+		"posicion_fantasma_jarama_scene_x_0" : posicion_fantasma_jarama_scene_x_0,
+		"posicion_fantasma_jarama_scene_x_1" : posicion_fantasma_jarama_scene_x_1,
+		"posicion_fantasma_jarama_scene_x_2" : posicion_fantasma_jarama_scene_x_2,
+	
+		"posicion_fantasma_jarama_scene_y_0" : posicion_fantasma_jarama_scene_y_0,
+		"posicion_fantasma_jarama_scene_y_1" : posicion_fantasma_jarama_scene_y_1,
+		"posicion_fantasma_jarama_scene_y_2" : posicion_fantasma_jarama_scene_y_2,
+	
+		"posicion_fantasma_jarama_scene_z_0" : posicion_fantasma_jarama_scene_z_0,
+		"posicion_fantasma_jarama_scene_z_1" : posicion_fantasma_jarama_scene_z_1,
+		"posicion_fantasma_jarama_scene_z_2" : posicion_fantasma_jarama_scene_z_2,
+
+		"origen_fantasma_jarama_scene_0" : origen_fantasma_jarama_scene_0,
+		"origen_fantasma_jarama_scene_1" : origen_fantasma_jarama_scene_1,
+		"origen_fantasma_jarama_scene_2" : origen_fantasma_jarama_scene_2,
+	
+		"posicion_fantasma_town_scene_x_0" : posicion_fantasma_town_scene_x_0,
+		"posicion_fantasma_town_scene_x_1" : posicion_fantasma_town_scene_x_1,
+		"posicion_fantasma_town_scene_x_2" : posicion_fantasma_town_scene_x_2,
+	
+		"posicion_fantasma_town_scene_y_0" : posicion_fantasma_town_scene_y_0,
+		"posicion_fantasma_town_scene_y_1" : posicion_fantasma_town_scene_y_1,
+		"posicion_fantasma_town_scene_y_2" : posicion_fantasma_town_scene_y_2,
+	
+		"posicion_fantasma_town_scene_z_0" : posicion_fantasma_town_scene_z_0,
+		"posicion_fantasma_town_scene_z_1" : posicion_fantasma_town_scene_z_1,
+		"posicion_fantasma_town_scene_z_2" : posicion_fantasma_town_scene_z_2,
+
+		"origen_fantasma_town_scene_0" : origen_fantasma_town_scene_0,
+		"origen_fantasma_town_scene_1" : origen_fantasma_town_scene_1,
+		"origen_fantasma_town_scene_2" : origen_fantasma_town_scene_2
 	
 	}
 	
-	var file = File.new()
+	var salvar = {"dic"  : dic }
+	var file = File.new() 
 	file.open(direccion, file.WRITE)
 	file.store_line(salvar.to_json())
-	file.close()	
+	file.close()
+#	
 	
-func load_game():  
-	
+func load_game(): 
 	var file = File.new()
 	if not file.file_exists(direccion):
 		return
@@ -108,60 +211,83 @@ func load_game():
 	file.open(direccion, File.READ)
 	var data = {}
 	data.parse_json(file.get_as_text())
+#	file.get_as_text()
+	file.close()
+#		
+	posicion_fantasma_terreno_x_0 = data.dic.posicion_fantasma_terreno_x_0
+	posicion_fantasma_terreno_x_1 = data.dic.posicion_fantasma_terreno_x_1
+	posicion_fantasma_terreno_x_2 = data.dic.posicion_fantasma_terreno_x_2
 	
-	if circuito.circuitoSeleccionado == "terreno":
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_terreno_x_0
-		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_terreno_x_1
-		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_terreno_x_2
+	posicion_fantasma_terreno_y_0 = data.dic.posicion_fantasma_terreno_y_0
+	posicion_fantasma_terreno_y_1 = data.dic.posicion_fantasma_terreno_y_1
+	posicion_fantasma_terreno_y_2 = data.dic.posicion_fantasma_terreno_y_2
 	
-		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_terreno_y_0
-		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_terreno_y_1
-		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_terreno_y_2
-	
-		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_terreno_z_0
-		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_terreno_z_1
-		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_terreno_z_2
+	posicion_fantasma_terreno_z_0 = data.dic.posicion_fantasma_terreno_z_0
+	posicion_fantasma_terreno_z_1 = data.dic.posicion_fantasma_terreno_z_1
+	posicion_fantasma_terreno_z_2 = data.dic.posicion_fantasma_terreno_z_2
 
-		origen_fantasma_circuito_0 = data.origen_fantasma_terreno_0
-		origen_fantasma_circuito_1 = data.origen_fantasma_terreno_1
-		origen_fantasma_circuito_2 = data.origen_fantasma_terreno_2
+	origen_fantasma_terreno_0 = data.dic.origen_fantasma_terreno_0
+	origen_fantasma_terreno_1 = data.dic.origen_fantasma_terreno_1
+	origen_fantasma_terreno_2 = data.dic.origen_fantasma_terreno_2
 	
-	if circuito.circuitoSeleccionado == "jarama_scene":
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_jarama_scene_x_1
-		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_jarama_scene_x_1
-		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_jarama_scene_x_2
+#	if data.has("dic") and  circuito == "jarama_scene":	
+		
+	posicion_fantasma_jarama_scene_x_0 = data.dic.posicion_fantasma_jarama_scene_x_0
+	posicion_fantasma_jarama_scene_x_1 = data.dic.posicion_fantasma_jarama_scene_x_1
+	posicion_fantasma_jarama_scene_x_2 = data.dic.posicion_fantasma_jarama_scene_x_2
 	
-		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_jarama_scene_y_0
-		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_jarama_scene_y_1
-		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_jarama_scene_y_2
+	posicion_fantasma_jarama_scene_y_0 = data.dic.posicion_fantasma_jarama_scene_y_0
+	posicion_fantasma_jarama_scene_y_1 = data.dic.posicion_fantasma_jarama_scene_y_1
+	posicion_fantasma_jarama_scene_y_2 = data.dic.posicion_fantasma_jarama_scene_y_2
 	
-		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_jarama_scene_z_0
-		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_jarama_scene_z_1
-		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_jarama_scene_z_2
+	posicion_fantasma_jarama_scene_z_0 = data.dic.posicion_fantasma_jarama_scene_z_0
+	posicion_fantasma_jarama_scene_z_1 = data.dic.posicion_fantasma_jarama_scene_z_1
+	posicion_fantasma_jarama_scene_z_2 = data.dic.posicion_fantasma_jarama_scene_z_2
 
-		origen_fantasma_circuito_0 = data.origen_fantasma_jarama_scene_0
-		origen_fantasma_circuito_1 = data.origen_fantasma_jarama_scene_1
-		origen_fantasma_circuito_2 = data.origen_fantasma_jarama_scene_2
-	if circuito.circuitoSeleccionado == "RoscoCampero_scene":
-		posicion_fantasma_circuito_x_0 = data.posicion_fantasma_RoscoCampero_scene_x_1
-		posicion_fantasma_circuito_x_1 = data.posicion_fantasma_RoscoCampero_scene_x_1
-		posicion_fantasma_circuito_x_2 = data.posicion_fantasma_RoscoCampero_scene_x_2
+	origen_fantasma_jarama_scene_0 = data.dic.origen_fantasma_jarama_scene_0
+	origen_fantasma_jarama_scene_1 = data.dic.origen_fantasma_jarama_scene_1
+	origen_fantasma_jarama_scene_2 = data.dic.origen_fantasma_jarama_scene_2
+#	
+#	if data.has("dic") and  circuito == "RoscoCampero_scene":
+		
+	posicion_fantasma_RoscoCampero_scene_x_0 = data.dic.posicion_fantasma_RoscoCampero_scene_x_0
+	posicion_fantasma_RoscoCampero_scene_x_1 = data.dic.posicion_fantasma_RoscoCampero_scene_x_1
+	posicion_fantasma_RoscoCampero_scene_x_2 = data.dic.posicion_fantasma_RoscoCampero_scene_x_2
 	
-		posicion_fantasma_circuito_y_0 = data.posicion_fantasma_RoscoCampero_scene_y_0
-		posicion_fantasma_circuito_y_1 = data.posicion_fantasma_RoscoCampero_scene_y_1
-		posicion_fantasma_circuito_y_2 = data.posicion_fantasma_RoscoCampero_scene_y_2
+	posicion_fantasma_RoscoCampero_scene_y_0 = data.dic.posicion_fantasma_RoscoCampero_scene_y_0
+	posicion_fantasma_RoscoCampero_scene_y_1 = data.dic.posicion_fantasma_RoscoCampero_scene_y_1
+	posicion_fantasma_RoscoCampero_scene_y_2 = data.dic.posicion_fantasma_RoscoCampero_scene_y_2
 	
-		posicion_fantasma_circuito_z_0 = data.posicion_fantasma_RoscoCampero_scene_z_0
-		posicion_fantasma_circuito_z_1 = data.posicion_fantasma_RoscoCampero_scene_z_1
-		posicion_fantasma_circuito_z_2 = data.posicion_fantasma_RoscoCampero_scene_z_2
+	posicion_fantasma_RoscoCampero_scene_z_0 = data.dic.posicion_fantasma_RoscoCampero_scene_z_0
+	posicion_fantasma_RoscoCampero_scene_z_1 = data.dic.posicion_fantasma_RoscoCampero_scene_z_1
+	posicion_fantasma_RoscoCampero_scene_z_2 = data.dic.posicion_fantasma_RoscoCampero_scene_z_2
 
-		origen_fantasma_circuito_0 = data.origen_fantasma_RoscoCampero_scene_0
-		origen_fantasma_circuito_1 = data.origen_fantasma_RoscoCampero_scene_1
-		origen_fantasma_circuito_2 = data.origen_fantasma_RoscoCampero_scene_2
+	origen_fantasma_RoscoCampero_scene_0 = data.dic.origen_fantasma_RoscoCampero_scene_0
+	origen_fantasma_RoscoCampero_scene_1 = data.dic.origen_fantasma_RoscoCampero_scene_1
+	origen_fantasma_RoscoCampero_scene_2 = data.dic.origen_fantasma_RoscoCampero_scene_2
+	
+#	if data.has("dic") and  circuito == "town_scene":
+		
+	posicion_fantasma_town_scene_x_0 = data.dic.posicion_fantasma_town_scene_x_0
+	posicion_fantasma_town_scene_x_1 = data.dic.posicion_fantasma_town_scene_x_1
+	posicion_fantasma_town_scene_x_2 = data.dic.posicion_fantasma_town_scene_x_2
+	
+	posicion_fantasma_town_scene_y_0 = data.dic.posicion_fantasma_town_scene_y_0
+	posicion_fantasma_town_scene_y_1 = data.dic.posicion_fantasma_town_scene_y_1
+	posicion_fantasma_town_scene_y_2 = data.dic.posicion_fantasma_town_scene_y_2
+	
+	posicion_fantasma_town_scene_z_0 = data.dic.posicion_fantasma_town_scene_z_0
+	posicion_fantasma_town_scene_z_1 = data.dic.posicion_fantasma_town_scene_z_1
+	posicion_fantasma_town_scene_z_2 = data.dic.posicion_fantasma_town_scene_z_2
+
+	origen_fantasma_town_scene_0 = data.dic.origen_fantasma_town_scene_0
+	origen_fantasma_town_scene_1 = data.dic.origen_fantasma_town_scene_1
+	origen_fantasma_town_scene_2 = data.dic.origen_fantasma_town_scene_2
+	
+	
 
 func _ready():
-	
-	print (circuito)
+
 	load_game()
 	#### #### escone la meta del coche, esconde la leyermask (.hide no sive) ####
 	meta.set_layer_mask_bit(0,false)
@@ -198,20 +324,66 @@ func _ready():
 func fantasma_corre():
 #	var nodo_fantasma = get_tree().get_root().get_node("fantasma")
 #	# cambiar
-	
-	if posicion_fantasma_circuito_x_0.empty():
-		pass
-	else:
-		fantasma_body.set_global_transform(Transform(
-		
-		Vector3(posicion_fantasma_circuito_x_0[numero_frame] , posicion_fantasma_circuito_x_1[numero_frame] , posicion_fantasma_circuito_x_2[numero_frame]),
-		Vector3(posicion_fantasma_circuito_y_0[numero_frame] , posicion_fantasma_circuito_y_1[numero_frame] , posicion_fantasma_circuito_y_2[numero_frame]),
-		Vector3(posicion_fantasma_circuito_z_0[numero_frame] , posicion_fantasma_circuito_z_1[numero_frame] , posicion_fantasma_circuito_z_2[numero_frame]),
-		Vector3(origen_fantasma_circuito_0[numero_frame],origen_fantasma_circuito_1[numero_frame],origen_fantasma_circuito_2[numero_frame])))
-		
-		if numero_frame >= posicion_fantasma_circuito_x_0.size()-1:
+	if circuito == "terreno":
+		if posicion_fantasma_terreno_x_0.empty():
 			pass
-		else: numero_frame +=1
+		else:
+			fantasma_body.set_global_transform(Transform(
+		
+			Vector3(posicion_fantasma_terreno_x_0[numero_frame] , posicion_fantasma_terreno_x_1[numero_frame] , posicion_fantasma_terreno_x_2[numero_frame]),
+			Vector3(posicion_fantasma_terreno_y_0[numero_frame] , posicion_fantasma_terreno_y_1[numero_frame] , posicion_fantasma_terreno_y_2[numero_frame]),
+			Vector3(posicion_fantasma_terreno_z_0[numero_frame] , posicion_fantasma_terreno_z_1[numero_frame] , posicion_fantasma_terreno_z_2[numero_frame]),
+			Vector3(origen_fantasma_terreno_0[numero_frame],origen_fantasma_terreno_1[numero_frame],origen_fantasma_terreno_2[numero_frame])))
+			
+			if numero_frame >= posicion_fantasma_terreno_x_0.size()-1:
+				pass
+			else: numero_frame +=1
+
+	if circuito == "RoscoCampero_scene":
+		if posicion_fantasma_RoscoCampero_scene_x_0.empty():
+			pass
+		else:
+			fantasma_body.set_global_transform(Transform(
+		
+			Vector3(posicion_fantasma_RoscoCampero_scene_x_0[numero_frame] , posicion_fantasma_RoscoCampero_scene_x_1[numero_frame] , posicion_fantasma_RoscoCampero_scene_x_2[numero_frame]),
+			Vector3(posicion_fantasma_RoscoCampero_scene_y_0[numero_frame] , posicion_fantasma_RoscoCampero_scene_y_1[numero_frame] , posicion_fantasma_RoscoCampero_scene_y_2[numero_frame]),
+			Vector3(posicion_fantasma_RoscoCampero_scene_z_0[numero_frame] , posicion_fantasma_RoscoCampero_scene_z_1[numero_frame] , posicion_fantasma_RoscoCampero_scene_z_2[numero_frame]),
+			Vector3(origen_fantasma_RoscoCampero_scene_0[numero_frame],origen_fantasma_RoscoCampero_scene_1[numero_frame],origen_fantasma_RoscoCampero_scene_2[numero_frame])))
+			
+			if numero_frame >= posicion_fantasma_RoscoCampero_scene_x_0.size()-1:
+				pass
+			else: numero_frame +=1
+	
+	if circuito == "jarama_scene":
+		if posicion_fantasma_jarama_scene_x_0.empty():
+			pass
+		else:
+			fantasma_body.set_global_transform(Transform(
+		
+			Vector3(posicion_fantasma_jarama_scene_x_0[numero_frame] , posicion_fantasma_jarama_scene_x_1[numero_frame] , posicion_fantasma_jarama_scene_x_2[numero_frame]),
+			Vector3(posicion_fantasma_jarama_scene_y_0[numero_frame] , posicion_fantasma_jarama_scene_y_1[numero_frame] , posicion_fantasma_jarama_scene_y_2[numero_frame]),
+			Vector3(posicion_fantasma_jarama_scene_z_0[numero_frame] , posicion_fantasma_jarama_scene_z_1[numero_frame] , posicion_fantasma_jarama_scene_z_2[numero_frame]),
+			Vector3(origen_fantasma_jarama_scene_0[numero_frame],origen_fantasma_jarama_scene_1[numero_frame],origen_fantasma_jarama_scene_2[numero_frame])))
+			
+			if numero_frame >= posicion_fantasma_jarama_scene_x_0.size()-1:
+				pass
+			else: numero_frame +=1
+	
+	if circuito == "town_scene":
+		if posicion_fantasma_town_scene_x_0.empty():
+			pass
+		else:
+			fantasma_body.set_global_transform(Transform(
+		
+			Vector3(posicion_fantasma_town_scene_x_0[numero_frame] , posicion_fantasma_town_scene_x_1[numero_frame] , posicion_fantasma_town_scene_x_2[numero_frame]),
+			Vector3(posicion_fantasma_town_scene_y_0[numero_frame] , posicion_fantasma_town_scene_y_1[numero_frame] , posicion_fantasma_town_scene_y_2[numero_frame]),
+			Vector3(posicion_fantasma_town_scene_z_0[numero_frame] , posicion_fantasma_town_scene_z_1[numero_frame] , posicion_fantasma_town_scene_z_2[numero_frame]),
+			Vector3(origen_fantasma_town_scene_0[numero_frame],origen_fantasma_town_scene_1[numero_frame],origen_fantasma_town_scene_2[numero_frame])))
+			
+			if numero_frame >= posicion_fantasma_town_scene_x_0.size()-1:
+				pass
+			else: numero_frame +=1
+
 
 func grabar_coche():	
 	### apendiza a las listas del diccionario la matrix3x4 ####
@@ -245,27 +417,41 @@ func _fixed_process(delta):
 #	print("tiempo:",tiempo)
 # area que hace que deje de grabar las posiciones del coche  "meta"
 func _on_meta_body_enter( BODY ):
+	if circuito == "terreno":
+		if posicion_fantasma_terreno_x_0.empty() or posicion_coche_x_0.size() < posicion_fantasma_terreno_x_0.size():
+			
+			posicion_fantasma_terreno_x_0 = posicion_coche_x_0
+			posicion_fantasma_terreno_x_1 = posicion_coche_x_1
+			posicion_fantasma_terreno_x_2 = posicion_coche_x_2
+			posicion_fantasma_terreno_y_0 = posicion_coche_y_0
+			posicion_fantasma_terreno_y_1 = posicion_coche_y_1
+			posicion_fantasma_terreno_y_2 = posicion_coche_y_2
+			posicion_fantasma_terreno_z_0 = posicion_coche_z_0
+			posicion_fantasma_terreno_z_1 = posicion_coche_z_1
+			posicion_fantasma_terreno_z_2 = posicion_coche_z_2
+			origen_fantasma_terreno_0 = origen_coche_0
+			origen_fantasma_terreno_1 = origen_coche_1
+			origen_fantasma_terreno_2 = origen_coche_2
+			salvar()
+			load_game()
+	if circuito == "RoscoCampero_scene":
+		if posicion_fantasma_RoscoCampero_scene_x_0.empty() or posicion_coche_x_0.size() < posicion_fantasma_RoscoCampero_scene_x_0.size():
+			
+			posicion_fantasma_RoscoCampero_scene_x_0 = posicion_coche_x_0
+			posicion_fantasma_RoscoCampero_scene_x_1 = posicion_coche_x_1
+			posicion_fantasma_RoscoCampero_scene_x_2 = posicion_coche_x_2
+			posicion_fantasma_RoscoCampero_scene_y_0 = posicion_coche_y_0
+			posicion_fantasma_RoscoCampero_scene_y_1 = posicion_coche_y_1
+			posicion_fantasma_RoscoCampero_scene_y_2 = posicion_coche_y_2
+			posicion_fantasma_RoscoCampero_scene_z_0 = posicion_coche_z_0
+			posicion_fantasma_RoscoCampero_scene_z_1 = posicion_coche_z_1
+			posicion_fantasma_RoscoCampero_scene_z_2 = posicion_coche_z_2
+			origen_fantasma_RoscoCampero_scene_0 = origen_coche_0
+			origen_fantasma_RoscoCampero_scene_1 = origen_coche_1
+			origen_fantasma_RoscoCampero_scene_2 = origen_coche_2
+			salvar()
+			load_game()
 		
-	if posicion_fantasma_circuito_x_0.empty() or posicion_coche_x_0.size() < posicion_fantasma_circuito_x_0.size():
-#		
-		posicion_fantasma_circuito_x_0 = posicion_coche_x_0
-		posicion_fantasma_circuito_x_1 = posicion_coche_x_1
-		posicion_fantasma_circuito_x_2 = posicion_coche_x_2
-	
-		posicion_fantasma_circuito_y_0 = posicion_coche_y_0
-		posicion_fantasma_circuito_y_1 = posicion_coche_y_1
-		posicion_fantasma_circuito_y_2 = posicion_coche_y_2
-		
-		posicion_fantasma_circuito_z_0 = posicion_coche_z_0
-		posicion_fantasma_circuito_z_1 = posicion_coche_z_1
-		posicion_fantasma_circuito_z_2 = posicion_coche_z_2
-		
-		origen_fantasma_circuito_0 = origen_coche_0
-		origen_fantasma_circuito_1 = origen_coche_1
-		origen_fantasma_circuito_2 = origen_coche_2
-		
-		save_game()
-		load_game()
 	numero_frame = 0
 	
 	posicion_coche_x_0.clear()
