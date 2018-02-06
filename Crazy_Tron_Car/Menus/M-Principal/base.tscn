@@ -7,7 +7,8 @@
 
 [node name="M-Principal" type="Control"]
 
-hint/tooltip = "Menu principal\n"
+hint/tooltip = "Menu principal
+"
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

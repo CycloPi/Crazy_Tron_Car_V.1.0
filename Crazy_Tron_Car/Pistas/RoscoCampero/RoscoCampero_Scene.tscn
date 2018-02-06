@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Coches/fantasma/fantasma.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Pistas/RoscoCampero/roscoCampero.scn" type="PackedScene" id=2]
 [ext_resource path="res://Pistas/HUD/HUD.pista.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Pistas/Atrezo/MetaVolante/metaVolante.scn" type="PackedScene" id=4]
 
 [sub_resource type="Environment" id=1]
 
@@ -67,43 +66,54 @@ transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46402, 2.30386, 0 )
 
 [node name="parcial1" parent="PosicionSalida/fantasma"]
 
-transform/local = Transform( 0.689568, 0, 0.724221, 0, 1, 0, -0.724221, 0, 0.689568, 4.99044, 1.56578, 8.73758 )
+transform/local = Transform( 0.999925, 0, 0.0122105, 0, 1, 0, -0.0122105, 0, 0.999925, -1.67956, 1.56578, 2.95984 )
+visibility/visible = false
 
 [node name="parcial2" parent="PosicionSalida/fantasma"]
 
-transform/local = Transform( 0.30636, 0, 0.951916, 0, 1, 0, -0.951916, 0, 0.30636, 12.942, 1.56578, 18.0254 )
+transform/local = Transform( 0.503022, 0, 0.864274, 0, 1, 0, -0.864274, 0, 0.503022, 7.79251, 1.56578, 13.711 )
+visibility/visible = false
 
 [node name="parcial3" parent="PosicionSalida/fantasma"]
 
 transform/local = Transform( -0.00271897, 0, 0.999996, 0, 1, 0, -0.999996, 0, -0.00271897, 20.0982, 1.56578, 18.0254 )
+visibility/visible = false
 
 [node name="parcial4" parent="PosicionSalida/fantasma"]
 
 transform/local = Transform( -0.39317, 0, 0.919466, 0, 1, 0, -0.919466, 0, -0.39317, 30.9086, 1.56578, 14.5234 )
+visibility/visible = false
 
 [node name="parcial5" parent="PosicionSalida/fantasma"]
 
 transform/local = Transform( 0.976631, 0, -0.21492, 0, 1, 0, 0.21492, 0, 0.976631, 38.217, 1.56578, 3.8653 )
+visibility/visible = false
 
 [node name="parcial6" parent="PosicionSalida/fantasma"]
 
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.2828, 1.56578, -2.68185 )
+visibility/visible = false
 
 [node name="parcial7" parent="PosicionSalida/fantasma"]
 
 transform/local = Transform( 0.740349, 0, 0.672222, 0, 1, 0, -0.672222, 0, 0.740349, 33.3447, 1.56578, -15.6239 )
+visibility/visible = false
 
 [node name="parcial8" parent="PosicionSalida/fantasma"]
 
+editor/display_folded = false
 transform/local = Transform( -0.0337844, 0, -0.999429, 0, 1, 0, 0.999429, 0, -0.0337844, 18.7279, 1.56578, -18.5168 )
+visibility/visible = false
 
 [node name="parcial9" parent="PosicionSalida/fantasma"]
 
 transform/local = Transform( 0.678649, 0, -0.734463, 0, 1, 0, 0.734463, 0, 0.678649, 5.63359, 1.56578, -16.9942 )
+visibility/visible = false
 
 [node name="parcial10" parent="PosicionSalida/fantasma"]
 
 transform/local = Transform( 0.974105, 0, -0.226097, 0, 1, 0, 0.226097, 0, 0.974105, 0, 1.56578, -8.01092 )
+visibility/visible = false
 
 [node name="roscoCampero" parent="." instance=ExtResource( 2 )]
 
@@ -153,27 +163,86 @@ operator = 0
 params/radius = 71.8941
 params/attenuation = 1.0
 
-[node name="Control" parent="." instance=ExtResource( 3 )]
-
-[node name="CameraMiniMapa" parent="Control/MiniMapa/Viewport"]
-
-transform/local = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 66.5428, 0 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 environment = SubResource( 1 )
 
-[node name="Atrezo" type="Spatial" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="metaVolante" parent="Atrezo" instance=ExtResource( 4 )]
-
-transform/local = Transform( 0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0 )
-
 [node name="HUDpista" parent="." instance=ExtResource( 3 )]
+
+[node name="CameraMiniMapa" parent="HUDpista/MiniMapa/Viewport"]
+
+transform/local = Transform( -1.62921e-07, 1, 0, 2.8213e-07, 4.59648e-14, 1, 1, 1.62921e-07, -2.8213e-07, 18.3337, 102.531, 0 )
+far = 200.0
+
+[node name="metaVolante" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante1" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante2" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 4
+
+[node name="metaVolante3" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 4
+
+[node name="metaVolante4" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 3
+
+[node name="metaVolante5" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 3
+
+[node name="metaVolante6" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 2
+
+[node name="metaVolante7" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 2
+
+[node name="metaVolante8" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 1
+
+[node name="metaVolante9" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[node name="metaVolante10" parent="HUDpista/MiniMapa/Viewport/CameraMiniMapa"]
+
+frame = 0
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/meta" to="PosicionSalida/fantasma" method="_on_meta_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial1" to="PosicionSalida/fantasma" method="_on_parcial1_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial2" to="PosicionSalida/fantasma" method="_on_parcial2_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial3" to="PosicionSalida/fantasma" method="_on_parcial3_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial4" to="PosicionSalida/fantasma" method="_on_parcial4_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial5" to="PosicionSalida/fantasma" method="_on_parcial5_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial6" to="PosicionSalida/fantasma" method="_on_parcial6_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial7" to="PosicionSalida/fantasma" method="_on_parcial7_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial8" to="PosicionSalida/fantasma" method="_on_parcial8_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial9" to="PosicionSalida/fantasma" method="_on_parcial9_body_enter"]
+
+[connection signal="body_enter" from="PosicionSalida/fantasma/parcial10" to="PosicionSalida/fantasma" method="_on_parcial10_body_enter"]
+
+[connection signal="pressed" from="HUDpista/Back" to="HUDpista" method="_on_Back_pressed"]
 
 
 [editable path="PosicionSalida/fantasma"]
-[editable path="Control"]
+[editable path="HUDpista"]
